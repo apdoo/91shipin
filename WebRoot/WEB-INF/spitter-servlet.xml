@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/mvc 
+       http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	   http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	   http://www.springframework.org/schema/task   
+       http://www.springframework.org/schema/task/spring-task-3.0.xsd  
+	   http://www.springframework.org/schema/util 
+	   http://www.springframework.org/schema/util/spring-util-3.0.xsd
+	   http://www.springframework.org/schema/context 
+	   http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	   http://www.springframework.org/schema/cache 
+	   http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
+	   ">
+		
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+    <!-- 只能用于springMVC,配置mvc的注解驱动-->
+    <mvc:annotation-driven/>
+     <!-- task任务扫描注解, -->
+    <task:annotation-driven/>  
+    <!-- 缓存注解 -->
+    <cache:annotation-driven />  
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">  
+        <property name="caches">  
+            <set>  
+                <!-- 在此创建的缓存 缓存的名字是data-->
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="data" />  
+            </set>  
+        </property>  
+    </bean>  
+     <!-- 扫描指定package下所有带有如@controller,@services,@resource,并把所注释的注册为Spring Beans -->  
+    <context:component-scan
+            base-package="com.hexor"> <!-- 可以用*表示扫描全部 -->
+    </context:component-scan>
+    <!-- 启动立即加载项   
+    	<bean id="initloader" lazy-init="false" class="com.hexor.init.InitLoder" init-method="init" />
+  -->
+       <!-- 配置过滤资源文件 否则spring的servlet会将这些资源文件请求过滤-->
+    <mvc:resources mapping="/js/**" location="/js/" />
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 注释掉。使用了JSTL标签才需要打开下面的设置
+         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+         在controller中返回页面的地址前缀与返回页面的后缀名配置
+         -->
+        <property name="prefix" value="/WEB-INF/page/" />
+        <property name="suffix"  value=".jsp"/>
+    </bean>
+</beans>

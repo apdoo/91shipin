@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hexor.dao.IUserMapper">
+   <sql id="columnUser">
+		  ID,
+		  username,
+		  password,
+		  email,
+		  signupTime,
+		  points,
+		  type,
+		  loginIp,
+		  loginTime,
+		  temp
+	 </sql>
+ 
+    <resultMap type="com.hexor.repo.User" id="userResultMap">  
+        <id property="id" column="id"/>  
+        <result property="username" column="username"/>  
+        <result property="password" column="password"/>  
+        <result property="email" column="email"/>
+        <result property="signupTime" column="signupTime"/>
+        <result property="points" column="points"/>
+        <result property="type" column="type"/>  
+        <result property="loginIp" column="loginIp"/>
+        <result property="loginTime" column="loginTime"/>
+        <result property="temp" column="temp"/>
+    </resultMap>
+    
+     <select id="getAllUser"   resultMap="userResultMap">
+            select * from user 
+    </select>
+
+    <select id="checkUser"   parameterType="String" resultType="com.hexor.repo.User">
+            select 
+            	<include refid="columnUser"/>  
+           	from user where username=#{value}
+    </select>
+    
+    <insert id="insertUser"  parameterType="com.hexor.repo.User" >
+    		insert into user(<include refid="columnUser" />) values(
+            	#{id},
+            	#{username},
+            	#{password},
+            	#{email},
+            	#{signupTime},
+            	#{points},
+            	#{type},
+            	#{loginIp},
+            	#{loginTime},
+            	#{temp}
+
+            	)
+    </insert>
+    
+    <!-- 查找总条数 -->
+     <select id="getUsersCount"   resultType="long">
+            select count(*) from user 
+    </select>
+    
+    <!-- 针对mysql的分页 limit函数 -->
+    <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="userResultMap">
+			select * from user order by id desc limit #{index},#{data}  
+    </select>
+    
+ </mapper>
