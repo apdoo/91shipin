@@ -41,6 +41,9 @@
     <breakpoint_rules />
     <ui_properties />
   </component>
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
   <component name="IdProvider" IDEtalkID="C450524872D1982A19ACA4446EB3E864" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
