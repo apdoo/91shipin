@@ -68,7 +68,7 @@
         <input name="#" type="text" class="tp_barip">
         <select name="#" class="tp_drp"><option>视频</option></select>
         <a href="#" class="tp_search"><img src="${pageContext.request.contextPath}/resources/img/tp_search.jpg" width="52" height="24" alt=""></a>
-        <span class="tp_welcum">欢迎 <b>游客</b></span>
+        <span class="tp_welcum">欢迎 <b>${userinfo.username}</b></span>
 
     </div>
 

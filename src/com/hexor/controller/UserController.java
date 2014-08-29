@@ -33,16 +33,25 @@ public class UserController extends BaseController{
     }
 
     /**
-     * 注册接口，返回注册页面
+     * 返回注册页面
      * @param session
      * @param model
      * @return
      */
     @RequestMapping(value="signup")
-    public ModelAndView signup(HttpSession session, ModelMap model){
+       public ModelAndView signup(HttpSession session, ModelMap model){
         return new ModelAndView("signup");
     }
-
+    /**
+     * 返回我的主页
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="myhome")
+    public ModelAndView myhome(HttpSession session, ModelMap model){
+        return new ModelAndView("myhome");
+    }
     /**
      * 登录接口
      * @param user
@@ -54,10 +63,13 @@ public class UserController extends BaseController{
     public ModelAndView login(User user,HttpSession session, ModelMap model){
         System.out.println("login"+user.getUsername());
         System.out.println("session"+ Configurer.getContextProperty("session.userinfo"));
-
+        session.setMaxInactiveInterval(5 * 60); // 设置session对象5分钟失效
+        // 将验证码保存在session对象中，key为validation_code
+        session.setAttribute((String) Configurer.getContextProperty("session.userinfo"), user);
+        System.out.println("user"+user.getUsername());
         ModelAndView modelAndView=new ModelAndView("myhome") ;
-        return modelAndView;
 
+        return modelAndView;
     }
 
     /**
