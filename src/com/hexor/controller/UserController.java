@@ -2,6 +2,7 @@ package com.hexor.controller;
 
 import com.hexor.repo.User;
 import com.hexor.service.impl.UserService;
+import com.hexor.util.Configurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value="user")
-public class UserController {
+public class UserController extends BaseController{
     @Autowired
     @Qualifier("com.hexor.service.impl.UserService")
     private UserService userService = null;
@@ -31,23 +32,42 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * 注册接口，返回注册页面
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value="signup")
-    public String signup(HttpSession session, ModelMap model){
-        System.out.println("**"+userService.getUsersCount());
-        return "signup";
+    public ModelAndView signup(HttpSession session, ModelMap model){
+        return new ModelAndView("signup");
     }
 
+    /**
+     * 登录接口
+     * @param user
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping(value="login")
     public ModelAndView login(User user,HttpSession session, ModelMap model){
-        Map modelMap =new HashMap();
-        modelMap.put("user",user);
         System.out.println("login"+user.getUsername());
-        return new ModelAndView("myhome",modelMap);
+        System.out.println("session"+ Configurer.getContextProperty("session.userinfo"));
+
+        ModelAndView modelAndView=new ModelAndView("myhome") ;
+        return modelAndView;
+
     }
 
+    /**
+     * 注册接口
+     * @param session
+     * @param model
+     */
     @RequestMapping(value="toSignup")
     public void toSignup(HttpSession session, ModelMap model){
         System.out.println("to sign..");
-
     }
+
 }

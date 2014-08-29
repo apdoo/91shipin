@@ -21,8 +21,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <link rel="stylesheet" type="text/css"
             href="${pageContext.request.contextPath}/resources/css/style.css">
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
+      <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
+   <script type="text/javascript">
+       $(function() {
+
+
+       });
+
+   </script>
   </head>
-  
+
   <body>
       <div id="main_block">
              <div id="innerblock">
@@ -165,10 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                          <span class="rp_membrpwd">Password:</span>
                          <input name="#" type="password" <%--class="rp_pwdrip"--%>>
                          <a href="#" class="rp_login"><img src="${pageContext.request.contextPath}/resources/img/rp_login.jpg" width="39" height="17" alt=""></a>
-
-                         <span class="rp_notmem"><a href="#" style="font:11px Arial, Helvetica, sans-serif; color:#FFFFFF;">Forgot your password</a></span>
-
-
+                        <%-- <span class="rp_notmem"><a href="#" style="font:11px Arial, Helvetica, sans-serif; color:#FFFFFF;">Forgot your password</a></span>--%>
                      </div>
 
                      <img src="${pageContext.request.contextPath}/resources/img/rp_upbgtop.jpg" width="282" height="10" alt="" class="rp_upbgtop">

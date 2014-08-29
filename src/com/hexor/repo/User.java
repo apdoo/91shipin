@@ -18,7 +18,7 @@ public class User extends BasePojo{
     private int type=0;//会员类型 0，普通会员，1包月会员，2包季度会员，3包年会员，4永久会员，5管理员 ，-1被封禁会员
     private String loginIp="";//上次登录的ip
     private String loginTime="";//上次登录的时间
-    private String temp;//临时标志，邮箱是否验证？
+    private String temp="";//用户sessionid 用来cookie登录
 
 
     public String getSignupTime() {

@@ -21,30 +21,32 @@
 	   http://www.springframework.org/schema/cache 
 	   http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
 	   ">
-		
+
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
     <!-- 只能用于springMVC,配置mvc的注解驱动-->
     <mvc:annotation-driven/>
-     <!-- task任务扫描注解, -->
-    <task:annotation-driven/>  
+    <!-- 激活spring的注解.注:次标签只在 Servlet MVC工作 -->
+    <context:annotation-config />
+    <!-- task任务扫描注解, -->
+    <task:annotation-driven/>
     <!-- 缓存注解 -->
-    <cache:annotation-driven />  
-    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">  
-        <property name="caches">  
-            <set>  
+    <cache:annotation-driven />
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <set>
                 <!-- 在此创建的缓存 缓存的名字是data-->
-                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="data" />  
-            </set>  
-        </property>  
-    </bean>  
-     <!-- 扫描指定package下所有带有如@controller,@services,@resource,并把所注释的注册为Spring Beans -->  
+                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="data" />
+            </set>
+        </property>
+    </bean>
+    <!-- 扫描指定package下所有带有如@controller,@services,@resource,并把所注释的注册为Spring Beans -->
     <context:component-scan
             base-package="com.hexor"> <!-- 可以用*表示扫描全部 -->
     </context:component-scan>
     <!-- 启动立即加载项   
     	<bean id="initloader" lazy-init="false" class="com.hexor.init.InitLoder" init-method="init" />
   -->
-       <!-- 配置过滤资源文件 否则spring的servlet会将这些资源文件请求过滤-->
+    <!-- 配置过滤资源文件 否则spring的servlet会将这些资源文件请求过滤-->
     <mvc:resources mapping="/js/**" location="/js/" />
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <!--配置视图解析器-->
@@ -56,4 +58,23 @@
         <property name="prefix" value="/WEB-INF/page/" />
         <property name="suffix"  value=".jsp"/>
     </bean>
+
+    <!--controller 拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+    <!--
+    mvc:exclude-mapping 标签不被spring-mvc-3.0.xsd支持，该配置在spring-mvc-3.2.xsd中，可以通过http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd获取，因此需要在spring-mvc-3.0.xsd文件中增加该标签，处理办法很简单，从网上下载spring-mvc-3.2.xsd，找到标签后，再找到spring.web.servlet-3.0.5.jar中的spring-mvc-3.0.xsd文件，将标签加入即可
+    -->
+        <!--/* 拦截所有一级请求 /*/* 拦截所有二级请求-->
+        <mvc:mapping path="/user/**"/>
+        <bean class="com.hexor.interceptor.SessionInterceptor">
+        <property name="allowUrls">
+        <list>
+        <!-- 如果请求中包含以下路径，则不进行拦截.只要包含则不拦截 -->
+        <value>/login</value>
+        </list>
+        </property>
+        </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

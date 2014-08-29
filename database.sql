@@ -9,6 +9,7 @@ CREATE TABLE user(
 	type int,
 	loginIp varchar(20),
 	loginTime  varchar(30),
-	temp   varchar(20)
+	temp   varchar(20)            //用来存sessionid
 )default charset=utf8;
 alter table user modify id int auto_increment primary key;
+

@@ -14,9 +14,29 @@
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
 	$(function() {
+        var username=getCookieValue("username");
+        var password=getCookieValue("password") ;
+        console.info(username+password);
+
+        <%--$.ajax({--%>
+            <%--type : "POST",--%>
+            <%--url : "${pageContext.request.contextPath}/sign/verification",--%>
+            <%--data : {--%>
+                <%--username : username,--%>
+                <%--password : password--%>
+            <%--},--%>
+            <%--dataType:"json",--%>
+            <%--success : function(data) {--%>
+            <%--},--%>
+            <%--//请求出错的处理--%>
+            <%--error:function(){--%>
+                <%--alert("请求出错");--%>
+            <%--}--%>
+        <%--});--%>
 
 	});
 </script>

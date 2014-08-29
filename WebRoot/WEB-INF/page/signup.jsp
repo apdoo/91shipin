@@ -23,11 +23,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <link rel="stylesheet" type="text/css"
             href="${pageContext.request.contextPath}/resources/css/button.css">
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
+      <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
+      <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
       <script type="text/javascript">
           $(function() {
               //点击验证码换
               $("#vimg").click(function() {
                   $("#vimg").attr("src","${pageContext.request.contextPath}/validation/one");
+              });
+              $("#login").click(function(){
+                   var username= $("#login_username").val();
+                   var password=$("#login_password").val();
+                   if(checkUser(username)){
+                       alert("验证通过");
+                   }
+                   //设置cookie
+                  if( $("#saveCookie").is(':checked')){
+                      alert("saveCookie"+username);
+                      setCookie("username",username,24,"/");
+                      setCookie("password",password,24,"/");
+                  }
+                   $("#login_form").submit();
+
               });
           });
 
@@ -45,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      <h2>我已经是会员了</h2>
                      如果您已经是注册会员了，请在此直接登录
                      <div class="signup_container">
-                         <form name="login_form" method="post" action="${pageContext.request.contextPath}/user/login">
+                         <form name="login_form" id="login_form" method="post" action="${pageContext.request.contextPath}/user/login">
 
                              <label for="login_username" class="label">用户名 : </label>
 
@@ -61,8 +78,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                               <!--此行作用来对齐button按钮-->
                              <label for="" class="label">&nbsp;</label>
                              <div class="gform_footer top_label">
-                                 <input type="submit" id="sign" class="button black" value="登 录"
+                                 <input type="button" id="login" class="button green" value="登 录"
                                         tabindex="5">
+                                     <input id="saveCookie" type="checkbox" value="" />记住密码</p>
                              </div>
                              <div class="clear"></div>
                              <%--<div align="center"><a href="http://video-share.ro/forgot.php">Forgot Password</a> | <a href="http://video-share.ro/forgot.php">Forgot Username</a></div>--%>
@@ -84,11 +102,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                  <form name="login_form" id="login_form" method="post" action="">
 
-                     <label for="username" class="label">用户名:</label>
+                     <label for="newusername" class="label">用户名:</label>
                      <div class="input_container">
 
 
-                         <input type="text" name="username" id="username">
+                         <input type="text" name="username" id="newusername">
 
 
                          <div class="hint">请输入字母开头，包含数字的账号进行注册。</div>
@@ -109,10 +127,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                      <div class="clearfix"></div>
 
-                     <label for="password" class="label">密码:</label>
+                     <label for="newpassword" class="label">密码:</label>
 
                      <div class="input_container">
-                         <input type="password" name="password" id="password">
+                         <input type="password" name="password" id="newpassword">
                      </div>
                      <div class="clearfix"></div>
                      <label for="cpassword" class="label">确认密码:</label>
@@ -121,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      </div>
                      <div class="clearfix"></div>
                      <label class="label" for="verification_code">验证码:</label>
-                     <input type="text" id="verification_code" name="cb_captcha">
+                     <input type="text" id="verification_code" name="vcode">
                      <div class="clearfix"></div>
                      <label class="label">&nbsp;</label>
                      <div class="input_container">
@@ -131,7 +149,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      <div class="clear"></div>
                      <label for="" class="label">&nbsp;</label>
                      <div class="gform_footer top_label">
-                         <input type="button" id="reg" class="button black" value="注 册"
+                         <input type="button" id="reg" class="button green" value="注 册"
                                 tabindex="5">
                      </div>
                      <div class="clearfix"></div>

@@ -56,10 +56,10 @@ float:left; background:url(../img/tp_inactivbg.jpg) no-repeat;
  color:#B8B8B4; text-decoration:none;
  }
 .tp_navbg a:hover
-{ 
+{
 float:left; background:url(../img/tp_activbg.jpg) no-repeat;
-width:104px; height:19px; padding:13px 0 0 0px; text-align:center; 
-font:bold 11px Arial, Helvetica, sans-serif; color:#282C2C; 
+width:104px; height:19px; padding:13px 0 0 0px; text-align:center;
+font:bold 11px Arial, Helvetica, sans-serif; color:#282C2C;
 text-decoration:none;
 }
 .tp_smlgrnbg{
