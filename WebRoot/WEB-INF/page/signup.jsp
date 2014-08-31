@@ -18,34 +18,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-      <link rel="stylesheet" type="text/css"
-            href="${pageContext.request.contextPath}/resources/css/style.css">
-      <link rel="stylesheet" type="text/css"
-            href="${pageContext.request.contextPath}/resources/css/button.css">
-      <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
-      <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
-      <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
       <script type="text/javascript">
           $(function() {
               //点击验证码换
               $("#vimg").click(function() {
                   $("#vimg").attr("src","${pageContext.request.contextPath}/validation/one");
               });
-              $("#login").click(function(){
-                   var username= $("#login_username").val();
-                   var password=$("#login_password").val();
-                   if(checkUser(username)){
-                       alert("验证通过");
-                   }
-                   //设置cookie
-                  if( $("#saveCookie").is(':checked')){
-                      alert("saveCookie"+username);
-                      setCookie("username",username,24,"/");
-                      setCookie("password",password,24,"/");
-                  }
-                   $("#login_form").submit();
 
-              });
           });
 
       </script>
@@ -61,11 +40,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                      <h2>我已经是会员了</h2>
                      如果您已经是注册会员了，请在此直接登录
-                     <div class="signup_container">
+                     <div class="signup_container" >
                          <form name="login_form" id="login_form" method="post" action="${pageContext.request.contextPath}/user/login">
-
                              <label for="login_username" class="label">用户名 : </label>
-
                              <div class="input_container">
                                  <input name="username" type="text" id="login_username" size="30">
                              </div>

@@ -11,33 +11,15 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/style.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/resources/css/style.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/resources/css/button.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
 	$(function() {
-        var username=getCookieValue("username");
-        var password=getCookieValue("password") ;
-        console.info(username+password);
-
-        <%--$.ajax({--%>
-            <%--type : "POST",--%>
-            <%--url : "${pageContext.request.contextPath}/sign/verification",--%>
-            <%--data : {--%>
-                <%--username : username,--%>
-                <%--password : password--%>
-            <%--},--%>
-            <%--dataType:"json",--%>
-            <%--success : function(data) {--%>
-            <%--},--%>
-            <%--//请求出错的处理--%>
-            <%--error:function(){--%>
-                <%--alert("请求出错");--%>
-            <%--}--%>
-        <%--});--%>
-
 	});
 </script>
 <style type="text/css">
@@ -51,15 +33,15 @@
     <div class="tp_navbg">
         <a href="${pageContext.request.contextPath}/home">首页</a>
         <%--<a href="#">Upload</a>--%>
-        <a href="${pageContext.request.contextPath}/videoslist">视频列表</a>
+        <a href="${pageContext.request.contextPath}/video/videoslist">视频列表</a>
         <a href="#">公告栏</a>
         <a href="#">News</a>
     </div>
 
     <div class="tp_smlgrnbg">
 					<span class="tp_sign"><a href="${pageContext.request.contextPath}/user/signup" class="tp_txt">注册</a>
-					<span class="tp_divi">|</span>
-					<a href="#" class="tp_txt">登录</a>
+                    <span class="tp_divi">|</span>
+					<a href="${pageContext.request.contextPath}/user/loginout" class="tp_txt">登出</a>
 					<span class="tp_divi">|</span>
 					<a href="#" class="tp_txt">帮助</a></span>
     </div>
@@ -68,7 +50,7 @@
         <input name="#" type="text" class="tp_barip">
         <select name="#" class="tp_drp"><option>视频</option></select>
         <a href="#" class="tp_search"><img src="${pageContext.request.contextPath}/resources/img/tp_search.jpg" width="52" height="24" alt=""></a>
-        <span class="tp_welcum">欢迎 <b>${userinfo.username}</b></span>
+        <span class="tp_welcum">欢迎 <a href="${pageContext.request.contextPath}/user/myhome"> <b>${userinfo.username}</b></a></span>
 
     </div>
 

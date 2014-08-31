@@ -42,6 +42,18 @@ public class UserController extends BaseController{
        public ModelAndView signup(HttpSession session, ModelMap model){
         return new ModelAndView("signup");
     }
+
+    /**
+     * 登出接口
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="loginout")
+    public ModelAndView loginout(HttpSession session, ModelMap model){
+        session.removeAttribute((String) Configurer.getContextProperty("session.userinfo"));
+        return new ModelAndView("home");
+    }
     /**
      * 返回我的主页
      * @param session

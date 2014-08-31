@@ -13,7 +13,7 @@
             ></form-login>
 
    <!--配置要拦截的请求-->
-  <intercept-url pattern="/user/myhome" access="hasRole('admin')"/>
+  <intercept-url pattern="/test/**" access="hasRole('admin')"/>
    <!--http://jw-long.iteye.com/blog/1291866-->
 </http>
     <authentication-manager>

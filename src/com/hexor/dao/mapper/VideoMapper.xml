@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hexor.dao.IVideoMapper">
+   <sql id="columnVideo">
+		  title,
+		  preImgSrc,
+		  vedioUrl,
+		  infotime,
+		  updatetime,
+		  flag
+	 </sql>
+ 
+    <resultMap type="com.hexor.repo.VideoBean" id="vedioResultMap">  
+        <id property="title" column="title"/>  
+        <result property="preImgSrc" column="preImgSrc"/>  
+        <result property="vedioUrl" column="vedioUrl"/>  
+        <result property="infotime" column="infotime"/>  
+        <result property="updatetime" column="updatetime"/>  
+        <result property="flag" column="flag"/>  
+    </resultMap>
+    
+    
+    
+    <!-- 查找总条数 -->
+     <select id="getVideosCount"   resultType="long">
+            select count(*) from vedio
+    </select>
+    
+    <!-- 针对mysql的分页 limit函数 -->
+    <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="vedioResultMap">
+			select * from vedio order by updatetime desc limit #{index},#{data}
+    </select>
+
+ </mapper>

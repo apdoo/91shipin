@@ -23,22 +23,22 @@
 	   ">
 
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
-    <!-- 只能用于springMVC,配置mvc的注解驱动-->
+    <!-- 只能用于springMVC,配置mvc的注解驱动 注:次标签只在 Servlet MVC工作-->
     <mvc:annotation-driven/>
-    <!-- 激活spring的注解.注:次标签只在 Servlet MVC工作 -->
-    <context:annotation-config />
     <!-- task任务扫描注解, -->
     <task:annotation-driven/>
+    <!-- 激活spring的注解. -->
+    <context:annotation-config />
     <!-- 缓存注解 -->
-    <cache:annotation-driven />
-    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
-        <property name="caches">
-            <set>
-                <!-- 在此创建的缓存 缓存的名字是data-->
-                <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="data" />
-            </set>
-        </property>
-    </bean>
+    <!--   <cache:annotation-driven />
+       <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+           <property name="caches">
+               <set>
+                   &lt;!&ndash; 在此创建的缓存 缓存的名字是data&ndash;&gt;
+                   <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" p:name="data" />
+               </set>
+           </property>
+       </bean>-->
     <!-- 扫描指定package下所有带有如@controller,@services,@resource,并把所注释的注册为Spring Beans -->
     <context:component-scan
             base-package="com.hexor"> <!-- 可以用*表示扫描全部 -->
@@ -70,11 +70,12 @@
             <!--/* 拦截所有一级请求 /*/* 拦截所有二级请求-->
             <mvc:mapping path="/user/**"/>
             <mvc:mapping path="/home/**"/>
+            <mvc:mapping path="/video/**"/>
             <bean class="com.hexor.interceptor.SessionInterceptor">
                 <property name="allowUrls">
                     <list>
                         <!-- 如果请求中包含以下路径，则不进行拦截.只要包含则不拦截 -->
-                        <value>/login</value>
+                        <value>/signup</value>
                     </list>
                 </property>
             </bean>

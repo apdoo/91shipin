@@ -13,3 +13,8 @@ CREATE TABLE user(
 )default charset=utf8;
 alter table user modify id int auto_increment primary key;
 
+
+--http://www.blogjava.net/GavinMiao/archive/2011/11/22/364499.html
+--导出表 MySQLdump -h localhost -u root -p test vedio>e:\mytable.sql
+--导入 MySQL -h localhost -u root -p test < e:\mytable.sql
+

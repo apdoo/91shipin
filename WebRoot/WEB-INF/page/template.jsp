@@ -21,6 +21,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <link rel="stylesheet" type="text/css"
             href="${pageContext.request.contextPath}/resources/css/style.css">
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
+      <script type="text/javascript">
+          $(function() {
+          });
+      </script>
   </head>
   
   <body>

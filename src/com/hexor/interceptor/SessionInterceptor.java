@@ -39,16 +39,17 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         //过滤不拦截的请求
-//        String requestUrl = httpServletRequest.getRequestURI().replace(httpServletRequest.getContextPath(), "");
-//        if(null != allowUrls && allowUrls.length>=1)  {
-//            for(String url : allowUrls) {
-//                System.out.println("url"+requestUrl);
-//                if(requestUrl.contains(url)) {
-//                    //浏览器的请求 直接返回false 不进行postHandle
-//                    System.out.println("不要拦截处理的url"+requestUrl);
-//                }
-//            }
-//        }
+        String requestUrl = httpServletRequest.getRequestURI().replace(httpServletRequest.getContextPath(), "");
+        if(null != allowUrls && allowUrls.length>=1)  {
+            for(String url : allowUrls) {
+                if(requestUrl.contains(url)) {
+                    //请求登录界面 如果发现session中有user信息 直接跳转
+                    User user=(User)httpServletRequest.getSession().getAttribute((String) Configurer.getContextProperty("session.userinfo")) ;
+                    if(user!=null)
+                    httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"/user/myhome");
+                }
+            }
+        }
         return true;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -67,12 +68,10 @@ public class SessionInterceptor implements HandlerInterceptor {
         User user= (User) session.getAttribute((String) Configurer.getContextProperty("session.userinfo"));
         if(user==null){
             //没有信息的时候，  modelAndView设置为游客
-            System.out.println("session里没有user信息");
             user=new User();
             user.setUsername("游客");
             modelAndView.addObject("userinfo",user);
         }else{
-            System.out.println("session 有user信息");
             modelAndView.addObject(user);
         }
 

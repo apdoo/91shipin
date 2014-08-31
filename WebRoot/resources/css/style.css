@@ -8,6 +8,9 @@ font: 14px/22px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
 font-weight: 300;
 -webkit-text-size-adjust: none;
 }
+a{
+    color: rgba(187, 255, 109, 0.70);
+}
 p{
 margin:0px; 
 padding:0px;
@@ -431,3 +434,46 @@ label {
     padding: 5px;
     padding-right: 15px;
 }
+/*分页*/
+.navigation {
+    clear: left;
+    width: 675px;
+    font-size: 13px;
+    border-top: 1px solid #e3e3e8;
+    margin: 0 35px 45px 0;
+    text-align: center;
+    padding-top: 25px;
+}
+.navigation .page-numbers { padding: 0 5px; }
+.navigation .current {
+    font-weight: bold;
+    border-top: 3px solid #333;
+    padding-top: 26px;
+    color: #7db72f;
+}
+.navigation .prev,
+.navigation .next {
+    display: block;
+    background: url(../img/pagination.png) no-repeat;
+    width: 19px;
+    height: 19px;
+    padding: 0;
+    text-indent: -9999px;
+}
+.navigation .prev {
+    background-position: 0 0;
+    float: left;
+}
+.navigation .prev:hover { background-position: 0 100%; }
+.navigation .next {
+    background-position: 100% 0;
+    float: right;
+}
+.navigation .navigation page-navigation:hover { background-position: 100% 100%; }
+.navigation .prev.inactive { background-position: 0 -20px; }
+.navigation .next.inactive { background-position: 100% -20px; }
+.navigation .divider {
+    color: #cdd0d2;
+    padding: 0 3px 0 6px;
+}
+

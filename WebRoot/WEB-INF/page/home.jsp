@@ -18,16 +18,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-      <link rel="stylesheet" type="text/css"
-            href="${pageContext.request.contextPath}/resources/css/style.css">
-      <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
-      <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
+   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
    <script type="text/javascript">
        $(function() {
-
+           var userinfo="${userinfo.username}";
+           if("游客"!=userinfo){
+               //存在用户登录信息  登录div隐藏
+               $("#rp_loginpad").hide();
+           }
+           checkLogin();
 
        });
-
+      function checkLogin(){
+          //验证cookie是否记住
+          var username=getCookieValue("username");
+          var password=getCookieValue("password");
+      }
    </script>
   </head>
 
@@ -163,19 +169,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                  </div>
 
-                 <div id="rp_padd">
-
+                 <div id="rp_padd" >
+                     <div class="rp_loginpad" id="rp_loginpad">
+                     <form name="login_form" id="login_form" method="post" action="${pageContext.request.contextPath}/user/login">
                      <img src="${pageContext.request.contextPath}/resources/img/rp_top.jpg" width="282" height="10" alt="" style="float:left;">
-                     <div class="rp_loginpad">
-                         <span class="rp_titxt">MEMBERS LOGIN</span>
-                         <span class="rp_membrusr">User name:</span>
-                         <input name="#" type="text" <%--class="rp_usrip"--%> >
-                         <span class="rp_membrpwd">Password:</span>
-                         <input name="#" type="password" <%--class="rp_pwdrip"--%>>
-                         <a href="#" class="rp_login"><img src="${pageContext.request.contextPath}/resources/img/rp_login.jpg" width="39" height="17" alt=""></a>
-                        <%-- <span class="rp_notmem"><a href="#" style="font:11px Arial, Helvetica, sans-serif; color:#FFFFFF;">Forgot your password</a></span>--%>
-                     </div>
 
+                         <span class="rp_titxt">会员登录</span>
+                         <span class="rp_membrusr">用户名:</span>
+                         <input  name="username" type="text" id="login_username"<%--class="rp_usrip"--%> >
+                         <span class="rp_membrpwd">密码:</span>
+                         <input name="password" type="password" id="login_password"  <%--class="rp_pwdrip"--%>>
+                         <span class="rp_membrusr"> 记住密码:<input id="saveCookie" type="checkbox" value="" /></span>
+                         <input type="button" id="login" class="button green" value="登 录" >      <%-- <span class="rp_notmem"><a href="#" style="font:11px Arial, Helvetica, sans-serif; color:#FFFFFF;">Forgot your password</a></span>--%>
+                    </form>
+                     </div>
                      <img src="${pageContext.request.contextPath}/resources/img/rp_upbgtop.jpg" width="282" height="10" alt="" class="rp_upbgtop">
                      <div class="rp_uppad">
                          <img src="${pageContext.request.contextPath}/resources/img/rp_upbgtit.jpg" width="127" height="11" alt="" class="rp_upbgtit"><br>
