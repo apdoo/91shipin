@@ -21,19 +21,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
    <script type="text/javascript">
        $(function() {
-           var userinfo="${userinfo.username}";
-           if("游客"!=userinfo){
-               //存在用户登录信息  登录div隐藏
-               $("#rp_loginpad").hide();
-           }
-           checkLogin();
-
+           root="${pageContext.request.contextPath}";
+           //获得cookie信息后发送到服务端验证
+           $.ajax({
+               type : "POST",
+               url : root+"/video/recently",
+               data : {
+               },
+               dataType:"json",
+               success : function(data) {
+                   var content="";
+                   $.each(data, function(key, val) {
+//                       var head=" <span class=\"lp_vidpara\">";
+//                       var img="<img src=\""+val.preImgSrc+"\"width=\"134\" height=\"83\" alt=\"\" class=\"lp_newvid1\">";
+//                       var img2="<img src=\""+root+"/resources/img/lp_newvidarro.jpg\" width=\"4\" height=\"6\" alt=\"\" class=\"lp_newvidarro\">";
+//                       var info="<span class=\"lp_newdixt\"><a href=\""+root+"/video/videoplay?vid="+val.videoId+"\"style=\"color:#BEBEBE;\" title=\""+val.title+"\">"+val.title.substr(0,5)+".."+"</a>" ;
+//                       var bottom="<br/>"+val.infotime+"<br/>更新时间:"+val.updatetime+"</span></span>";
+//                       content=content+  head+img+img2+info+bottom;
+                       var head="<img src=\""+val.preImgSrc+"\" width=\"152\" height=\"92\"  class=\"lp_featimg1\">";
+                       var cp="<span class=\"cp_featpara\"><span style=\"float:left; width:250px; display:inline;\"><span class=\"cp_featname\"><b>"+val.title+" </b><br>自拍</span></span></span>";
+                       var line="<img src=\""+root+"/resources/img/lp_featline.jpg\" width=\"634\" height=\"1\"   class=\"lp_featline\">";
+                       content=content+head+cp+line;
+                   });
+                   $("#videolist").html(content);
+               },
+               //请求出错的处理
+               error:function(){
+               }
+           });
        });
-      function checkLogin(){
-          //验证cookie是否记住
-          var username=getCookieValue("username");
-          var password=getCookieValue("password");
-      }
+
    </script>
   </head>
 
@@ -78,79 +95,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                      </div>
 
-                     <div class="lp_newvidpad">
-                         <span class="lp_newvidit">New Videos</span>
-                         <img src="${pageContext.request.contextPath}/resources/img/lp_newline.jpg" width="661" height="2" alt="" class="lp_newline">
-
-                         <a href="#"><img src="${pageContext.request.contextPath}/resources/img/lp_arro.jpg" width="13" height="20" alt="" class="lp_arro">	</a>
-
-						<span class="lp_vidpara">
-							<img src="${pageContext.request.contextPath}/resources/img/lp_newvid1.jpg" width="134" height="83" alt="" class="lp_newvid1">
-
-							<img src="${pageContext.request.contextPath}/resources/img/lp_newvidarro.jpg" width="4" height="6" alt="" class="lp_newvidarro">
-							<span class="lp_newdixt"><a href="#" style="color:#BEBEBE;">Nulla viverra neque</a><br>From: non tortor.</span>
-						</span>
-
-						<span class="lp_vidpara">
-							<img src="${pageContext.request.contextPath}/resources/img/lp_newvid2.jpg" width="134" height="83" alt="" class="lp_newvid1">
-
-							<img src="${pageContext.request.contextPath}/resources/img/lp_newvidarro.jpg" width="4" height="6" alt="" class="lp_newvidarro">
-							<span class="lp_newdixt"><a href="#" style="color:#BEBEBE;">Nulla viverra neque</a><br>From: non tortor.</span>
-						</span>
-
-						<span class="lp_vidpara">
-							<img src="${pageContext.request.contextPath}/resources/img/lp_newvid3.jpg" width="134" height="83" alt="" class="lp_newvid1">
-
-							<img src="${pageContext.request.contextPath}/resources/img/lp_newvidarro.jpg" width="4" height="6" alt="" class="lp_newvidarro">
-							<span class="lp_newdixt"><a href="#" style="color:#BEBEBE;">Nulla viverra neque</a><br>From: non tortor.</span>
-						</span>
-
-						<span class="lp_vidpara">
-							<img src="${pageContext.request.contextPath}/resources/img/lp_newvid4.jpg" width="134" height="83" alt="" class="lp_newvid1">
-
-							<img src="${pageContext.request.contextPath}/resources/img/lp_newvidarro.jpg" width="4" height="6" alt="" class="lp_newvidarro">
-							<span class="lp_newdixt"><a href="#" style="color:#BEBEBE;">Nulla viverra neque</a><br>From: non tortor.</span>
-						</span>
-
-                         <a href="#"><img src="${pageContext.request.contextPath}/resources/img/lp_arro1.jpg" width="13" height="20" alt="" class="lp_arro">	</a>
-
-                     </div>
-
                      <div class="lp_featpad">
                          <div class="lp_featnav">
-                             <a href="#">Featured</a>
-                             <a href="#">Most Viewed</a>
-                             <a href="#">Most Discussed</a>
-                             <a href="#">Top Favourites</a>
-                             <a href="#">Top Rated</a>
-                             <a href="#">Random</a>
-
+                             <a href="#">*最新 视频*</a>
+                             <a href="#">*观看 最多*</a>
+                             <a href="#">*讨论 最多*</a>
+                             <a href="#">*收藏 最多*</a>
+                             <a href="#">*获赞 最多*</a>
+                             <a href="#">*随机的一组*</a>
                          </div>
-
-                         <img src="${pageContext.request.contextPath}/resources/img/lp_featimg1.jpg" width="152" height="92" alt="" class="lp_featimg1">
-
-						<span class="cp_featpara">
-									<span style="float:left; width:250px; display:inline;"><span class="cp_featname"><b>Vivamus eu ipsum non diam dapibus egestas. </b><br>Best Music</span>
-
-									<span class="cp_featxt">In felis. In felis mi, ullamcorper at, cursus in, gravida vitae, purus. Praesent massa eros, euismod sed, sodales eu, tincidunt posuere</span><br>
-									</span>
-									<span class="cp_featview">5.5<br>Added :07.01.2009<br>From : Best Music<br>Views : 841<br>Comments:6<br>
-									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/lp_featstar.jpg" width="78" height="13" alt=""></a></span>
-						</span>
-
-                         <img src="${pageContext.request.contextPath}/resources/img/lp_featline.jpg" width="634" height="1" alt="" class="lp_featline">
-
-                         <img src="${pageContext.request.contextPath}/resources/img/lp_featimg2.jpg" width="152" height="92" alt="" class="lp_featimg1">
-
-						<span class="cp_featpara">
-									<span style="float:left; width:250px; display:inline;"><span class="cp_featname"><b>Vivamus eu ipsum non diam dapibus egestas. </b><br>Best Music</span>
-
-									<span class="cp_featxt">In felis. In felis mi, ullamcorper at, cursus in, gravida vitae, purus. Praesent massa eros, euismod sed, sodales eu, tincidunt posuere</span><br>
-									</span>
-									<span class="cp_featview">5.5<br>Added :07.01.2009<br>From : Best Music<br>Views : 841<br>Comments:6<br>
-									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/lp_featstar.jpg" width="78" height="13" alt=""></a></span>
-						</span>
-
+                         <div id="videolist"></div>
                          <img src="${pageContext.request.contextPath}/resources/img/lp_featline.jpg" width="634" height="1" alt="" class="lp_featline">
 
                          <img src="${pageContext.request.contextPath}/resources/img/lp_featimg3.jpg" width="152" height="92" alt="" class="lp_featimg1">
@@ -163,14 +117,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<span class="cp_featview">5.5<br>Added :07.01.2009<br>From : Best Music<br>Views : 841<br>Comments:6<br>
 									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/lp_featstar.jpg" width="78" height="13" alt=""></a></span>
 						</span>
-
                      </div>
 
 
                  </div>
 
                  <div id="rp_padd" >
-                     <div class="rp_loginpad" id="rp_loginpad">
+                     <div class="rp_loginpad" id="rp_loginpad" >
                      <form name="login_form" id="login_form" method="post" action="${pageContext.request.contextPath}/user/login">
                      <img src="${pageContext.request.contextPath}/resources/img/rp_top.jpg" width="282" height="10" alt="" style="float:left;">
 
@@ -182,6 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                          <span class="rp_membrusr"> 记住密码:<input id="saveCookie" type="checkbox" value="" /></span>
                          <input type="button" id="login" class="button green" value="登 录" >      <%-- <span class="rp_notmem"><a href="#" style="font:11px Arial, Helvetica, sans-serif; color:#FFFFFF;">Forgot your password</a></span>--%>
                     </form>
+                         <div id="login_tips"></div>
                      </div>
                      <img src="${pageContext.request.contextPath}/resources/img/rp_upbgtop.jpg" width="282" height="10" alt="" class="rp_upbgtop">
                      <div class="rp_uppad">

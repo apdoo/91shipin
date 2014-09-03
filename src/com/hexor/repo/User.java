@@ -20,6 +20,21 @@ public class User extends BasePojo{
     private String loginTime="";//上次登录的时间
     private String temp="";//用户sessionid 用来cookie登录
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", signupTime='" + signupTime + '\'' +
+                ", points=" + points +
+                ", type=" + type +
+                ", loginIp='" + loginIp + '\'' +
+                ", loginTime='" + loginTime + '\'' +
+                ", temp='" + temp + '\'' +
+                '}';
+    }
 
     public String getSignupTime() {
         return signupTime;

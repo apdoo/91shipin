@@ -3,7 +3,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.hexor.dao.IUserMapper">
    <sql id="columnUser">
-		  ID,
 		  username,
 		  password,
 		  email,
@@ -33,14 +32,15 @@
     </select>
 
     <select id="checkUser"   parameterType="String" resultType="com.hexor.repo.User">
-            select 
-            	<include refid="columnUser"/>  
-           	from user where username=#{value}
+            select * from user where username=#{value}
     </select>
-    
+
+    <select id="checkLogin"   parameterType="com.hexor.repo.User" resultType="com.hexor.repo.User">
+            select * from user where username=#{username} and password=#{password}
+    </select>
+
     <insert id="insertUser"  parameterType="com.hexor.repo.User" >
-    		insert into user(<include refid="columnUser" />) values(
-            	#{id},
+        insert into user(<include refid="columnUser" />) values(
             	#{username},
             	#{password},
             	#{email},
@@ -50,8 +50,10 @@
             	#{loginIp},
             	#{loginTime},
             	#{temp}
-
             	)
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
     </insert>
     
     <!-- 查找总条数 -->
@@ -63,5 +65,9 @@
     <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="userResultMap">
 			select * from user order by id desc limit #{index},#{data}  
     </select>
+    <!--登录更新用户信息-->
+    <update id="loginUpdate" parameterType="com.hexor.repo.User">
+              UPDATE user SET loginIp=#{loginIp}, loginTime=#{loginTime}
+    </update>
     
  </mapper>

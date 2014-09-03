@@ -22,4 +22,6 @@ public interface IUserService {
 
     public List<User> limit(Pager pager);
     public long getUsersCount();
+    public User checkLogin(User user);
+    public void loginUpdate(User user);
 }

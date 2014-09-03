@@ -20,7 +20,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
       <link rel="stylesheet" type="text/css"
             href="${pageContext.request.contextPath}/resources/css/style.css">
+      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/video.css">
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
+      <script type="text/javascript" src="${pageContext.request.contextPath}/js/video.js"></script>
+      <script type="text/javascript">
+          $(function() {
+               var title="${video.title}";
+               var views="${video.views}";
+               var favourite="${video.favourite}";
+               var infotime="${video.infotime}";
+               $(".caption").html(title);
+               $("#infotime").html(infotime);
+               $("#views").html("观看次数:"+views);
+                //http://techslides.com/demos/sample-videos/small.mp4
+
+          });
+      </script>
+
   </head>
   
   <body>
@@ -30,17 +46,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <jsp:include page="header.jsp"></jsp:include>
                  <!--内容-->
                  <div id="contentpanel">
-
                      <div id="lp_padd">
-
-                         <span class="lp_newvidit1">Video Title</span>
-
-                         <img src="${pageContext.request.contextPath}/resources/img/lp_invidplyr.jpg" width="593" height="389" alt="" class="lp_invidplyr">
-					
+                         <div class="videoContainer">
+                             <video id="myVideo" controls="" preload="auto"  width="593" height="389">
+                                 <source  src="${root}${video.videoId}" type="video/mp4">
+                                 <p>您的浏览器不支持html5，请更换</p>
+                             </video>
+                             <div class="caption"></div>
+                             <div class="control">
+                                 <div class="topControl">
+                                     <div class="progress">
+                                         <span class="bufferBar"></span>
+                                         <span class="timeBar"></span>
+                                     </div>
+                                     <div class="time">
+                                         <span class="current"></span> /
+                                         <span class="duration"></span>
+                                     </div>
+                                 </div>
+                                 <div class="btmControl">
+                                     <div class="btnPlay btn" title="Play/Pause video"></div>
+                                     <div class="btnStop btn" title="Stop video"></div>
+                                     <div class="spdText btn">速度: </div>
+                                     <div class="btnx1 btn text selected" title="Normal speed">x1</div>
+                                     <div class="btnx3 btn text" title="Fast forward x3">x3</div>
+                                     <div class="btnFS btn" title="Switch to full screen"></div>
+                                     <div class="btnLight lighton btn" title="Turn on/off light"></div>
+                                     <div class="volume" title="Set volume">
+                                         <span class="volumeBar"></span>
+                                     </div>
+                                     <div class="sound sound2 btn" title="Mute/Unmute sound"></div>
+                                 </div>
+                             </div>
+                             <div class="loading"></div>
+                         </div>
 					<span class="lp_inrplyrpad">
-						<span class="lp_plyrxt">Time :4.22</span>
-						<span class="lp_plyrxt">Views :67</span>
-						<span class="lp_plyrxt">Comments :1</span>
+						<span class="lp_plyrxt" id="infotime"></span>
+						<span class="lp_plyrxt" id="views"></span>
+						<span class="lp_plyrxt" id="comment">评论 :1</span>
 						<span class="lp_plyrxt" style="width:200px;">Rate it :<a href="#"><img src="${pageContext.request.contextPath}/resources/img/lp_featstar.jpg" width="78" height="13" alt=""></a></span>
 						<a href="#" class="lp_plyrlnks">Add to Favourites</a>
 						<a href="#" class="lp_plyrlnks">Write Comments</a>
@@ -118,10 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                              <span class="rp_inrimgxt" style="margin-left:20px;"><span style="font:11px/20px Arial, Helvetica, sans-serif;">Donec pharetra molestie tellus.</span><br>Vivamus facilisis diam. Mauris id</span>
 
                          </div>
-
-
                      </div>
-
                  </div>
                  <jsp:include page="bottom.jsp"></jsp:include>
                  <!--网站尾部-->

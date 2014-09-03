@@ -11,14 +11,13 @@ import javax.servlet.http.HttpSession;
 /**
  * Created with IntelliJ IDEA.
  * User: Dong
- * Date: 14-8-27
- * Time: 上午11:48
+ * Date: 14-9-3
+ * Time: 下午4:59
  * To change this template use File | Settings | File Templates.
  */
 @Controller
-public class MainController {
-
-
+@RequestMapping(value="public")
+public class PublicController {
     /**
      * 主页
      * @param session
@@ -27,9 +26,7 @@ public class MainController {
      */
     @RequestMapping(value="home")
     public String home(HttpSession session, HttpServletResponse response,ModelMap model){
-        //在此判断是否记住
-        User user = (User) session.getAttribute("user");
-        return "home";
+        return "publichome";
     }
 
 }

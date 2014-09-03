@@ -8,16 +8,24 @@
 		  vedioUrl,
 		  infotime,
 		  updatetime,
-		  flag
+		  videoId,
+		  flag,
+		  rate,
+		  views,
+		  favourite
 	 </sql>
  
     <resultMap type="com.hexor.repo.VideoBean" id="vedioResultMap">  
-        <id property="title" column="title"/>  
+        <result property="title" column="title"/>
         <result property="preImgSrc" column="preImgSrc"/>  
         <result property="vedioUrl" column="vedioUrl"/>  
         <result property="infotime" column="infotime"/>  
         <result property="updatetime" column="updatetime"/>  
-        <result property="flag" column="flag"/>  
+        <result property="videoId" column="videoId"/>
+        <result property="flag" column="flag"/>
+        <result property="rate" column="rate"/>
+        <result property="views" column="views"/>
+        <result property="favourite" column="favourite"/>
     </resultMap>
     
     
@@ -31,5 +39,31 @@
     <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="vedioResultMap">
 			select * from vedio order by updatetime desc limit #{index},#{data}
     </select>
+
+    <!--根据视频id查找视频信息-->
+    <select id="selectByVideoId" parameterType="String" resultType="com.hexor.repo.VideoBean">
+          select * from vedio where videoId=#{value} limit 1
+    </select>
+    <!--根据发布时间查找最新的3条视频信息-->
+     <select id="selectRecently" resultMap="vedioResultMap">
+         select * from vedio order by updatetime desc limit 5
+     </select>
+    <!--根据赞数查找获得赞最高的三条视频信息-->
+    <select id="selectRate" resultMap="vedioResultMap">
+         select * from vedio order by rate desc limit 5
+     </select>
+    <!--根据收藏数查找获得赞最高的三条视频信息-->
+    <select id="selectFav" resultMap="vedioResultMap">
+         select * from vedio order by favourite desc limit 5
+     </select>
+    <!--根据观看数查找获得赞最高的三条视频信息-->
+    <select id="selectViews" resultMap="vedioResultMap">
+         select * from vedio order by views desc limit 5
+     </select>
+    <!--随机3条视频信息-->
+    <select id="selectRand" resultMap="vedioResultMap">
+        select *, rand() as random from vedio order by random limit 5
+     </select>
+
 
  </mapper>

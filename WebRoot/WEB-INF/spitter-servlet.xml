@@ -60,27 +60,31 @@
     </bean>
 
     <!--controller 拦截器-->
-    <mvc:interceptors>
+    <!--<mvc:interceptors>-->
 
-        <!--=======-->
-        <mvc:interceptor>
-            <!--
-            mvc:exclude-mapping 标签不被spring-mvc-3.0.xsd支持，该配置在spring-mvc-3.2.xsd中，可以通过http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd获取，因此需要在spring-mvc-3.0.xsd文件中增加该标签，处理办法很简单，从网上下载spring-mvc-3.2.xsd，找到标签后，再找到spring.web.servlet-3.0.5.jar中的spring-mvc-3.0.xsd文件，将标签加入即可
-            -->
-            <!--/* 拦截所有一级请求 /*/* 拦截所有二级请求-->
-            <mvc:mapping path="/user/**"/>
-            <mvc:mapping path="/home/**"/>
-            <mvc:mapping path="/video/**"/>
-            <bean class="com.hexor.interceptor.SessionInterceptor">
-                <property name="allowUrls">
-                    <list>
-                        <!-- 如果请求中包含以下路径，则不进行拦截.只要包含则不拦截 -->
-                        <value>/signup</value>
-                    </list>
-                </property>
-            </bean>
-        </mvc:interceptor>
+        <!--&lt;!&ndash;=======&ndash;&gt;-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash;-->
+            <!--mvc:exclude-mapping 标签不被spring-mvc-3.0.xsd支持，该配置在spring-mvc-3.2.xsd中，可以通过http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd获取，因此需要在spring-mvc-3.0.xsd文件中增加该标签，处理办法很简单，从网上下载spring-mvc-3.2.xsd，找到标签后，再找到spring.web.servlet-3.0.5.jar中的spring-mvc-3.0.xsd文件，将标签加入即可-->
+            <!--&ndash;&gt;-->
+            <!--&lt;!&ndash;/* 拦截所有一级请求 /*/* 拦截所有二级请求 注意ajax请求不应该被拦截 否则ajax报错&ndash;&gt;-->
+            <!--<mvc:mapping path="/user/signup*"/>-->
+            <!--<mvc:mapping path="/user/loginout*"/>-->
+            <!--<mvc:mapping path="/user/myhome*"/>-->
+            <!--<mvc:mapping path="/user/login*"/>-->
+            <!--<mvc:mapping path="/user/toSignup*"/>-->
+            <!--<mvc:mapping path="/home/**"/>-->
+            <!--<mvc:mapping path="/video/**"/>-->
+            <!--<bean class="com.hexor.interceptor.SessionInterceptor">-->
+                <!--<property name="allowUrls">-->
+                    <!--<list>-->
+                        <!--&lt;!&ndash; 如果请求中包含以下路径，则不进行拦截.只要包含则不拦截 &ndash;&gt;-->
+                        <!--<value>/signup</value>-->
+                    <!--</list>-->
+                <!--</property>-->
+            <!--</bean>-->
+        <!--</mvc:interceptor>-->
 
-        <!--=======-->
-    </mvc:interceptors>
+        <!--&lt;!&ndash;=======&ndash;&gt;-->
+    <!--</mvc:interceptors>-->
 </beans>

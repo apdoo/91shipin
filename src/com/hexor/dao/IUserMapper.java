@@ -20,10 +20,12 @@ public interface IUserMapper {
     public List<User> getAllUser();
 
     public User checkUser(String username);
-
+    public User checkLogin(User user);
     public void insertUser(User user);
 
     public List<User> limit(Pager pager);
     public long getUsersCount();
+
+    public void loginUpdate(User user);
 
 }

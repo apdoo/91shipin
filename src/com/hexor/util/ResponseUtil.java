@@ -32,11 +32,17 @@ public class ResponseUtil {
         //ƴװjson
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("msg", map.get("msg"));
-        PrintWriter out = response.getWriter(); 
+        PrintWriter out = response.getWriter();
+//        System.out.println(jsonObject.toString());
         out.write(jsonObject.toString());  
 		
 	} 
-	
+	public static void outWriteJson(HttpServletResponse response,String json) throws IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
+        out.write(json);
+    }
 	public static void outWriteErrorVcode() throws IOException{
 		
 		

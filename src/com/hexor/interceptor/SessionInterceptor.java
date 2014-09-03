@@ -44,9 +44,9 @@ public class SessionInterceptor implements HandlerInterceptor {
             for(String url : allowUrls) {
                 if(requestUrl.contains(url)) {
                     //请求登录界面 如果发现session中有user信息 直接跳转
-                    User user=(User)httpServletRequest.getSession().getAttribute((String) Configurer.getContextProperty("session.userinfo")) ;
-                    if(user!=null)
-                    httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"/user/myhome");
+//                    User user=(User)httpServletRequest.getSession().getAttribute((String) Configurer.getContextProperty("session.userinfo")) ;
+//                    if(user!=null)
+//                    httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"/user/myhome");
                 }
             }
         }
@@ -63,17 +63,17 @@ public class SessionInterceptor implements HandlerInterceptor {
      */
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-        HttpSession session=httpServletRequest.getSession();
-        //在此拿到session里是否有用户信息
-        User user= (User) session.getAttribute((String) Configurer.getContextProperty("session.userinfo"));
-        if(user==null){
-            //没有信息的时候，  modelAndView设置为游客
-            user=new User();
-            user.setUsername("游客");
-            modelAndView.addObject("userinfo",user);
-        }else{
-            modelAndView.addObject(user);
-        }
+//        HttpSession session=httpServletRequest.getSession();
+//        //在此拿到session里是否有用户信息
+//        User user= (User) session.getAttribute((String) Configurer.getContextProperty("session.userinfo"));
+//        if(user==null){
+//            //没有信息的时候，  modelAndView设置为游客
+//            user=new User();
+//            user.setUsername("游客");
+//            modelAndView.addObject("userinfo",user);
+//        }else{
+//            modelAndView.addObject(user);
+//        }
 
     }
 

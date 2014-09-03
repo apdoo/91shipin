@@ -20,7 +20,15 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
 	$(function() {
+        var root="${pageContext.request.contextPath}";
+        checkLogin(root);
 	});
+    //登出
+    function loginout(){
+        //清除cookie
+        deleteCookie("username","/");
+        deleteCookie("password","/");
+    }
 </script>
 <style type="text/css">
 	#logo{scrollbar-arrow-color:buttontext}
@@ -34,14 +42,14 @@
         <a href="${pageContext.request.contextPath}/home">首页</a>
         <%--<a href="#">Upload</a>--%>
         <a href="${pageContext.request.contextPath}/video/videoslist">视频列表</a>
-        <a href="#">公告栏</a>
-        <a href="#">News</a>
+        <a href="${pageContext.request.contextPath}/public/home">公告栏</a>
+        <a href="#">论坛</a>
     </div>
 
     <div class="tp_smlgrnbg">
 					<span class="tp_sign"><a href="${pageContext.request.contextPath}/user/signup" class="tp_txt">注册</a>
                     <span class="tp_divi">|</span>
-					<a href="${pageContext.request.contextPath}/user/loginout" class="tp_txt">登出</a>
+					<a href="${pageContext.request.contextPath}/user/loginout" class="tp_txt" id="loginout" onclick="loginout()">登出</a>
 					<span class="tp_divi">|</span>
 					<a href="#" class="tp_txt">帮助</a></span>
     </div>
@@ -50,7 +58,7 @@
         <input name="#" type="text" class="tp_barip">
         <select name="#" class="tp_drp"><option>视频</option></select>
         <a href="#" class="tp_search"><img src="${pageContext.request.contextPath}/resources/img/tp_search.jpg" width="52" height="24" alt=""></a>
-        <span class="tp_welcum">欢迎 <a href="${pageContext.request.contextPath}/user/myhome"> <b>${userinfo.username}</b></a></span>
+        <span class="tp_welcum">欢迎 <a href="${pageContext.request.contextPath}/user/myhome"> <b id="my">${userinfo.username}</b></a></span>
 
     </div>
 

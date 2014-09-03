@@ -15,6 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+      <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -40,16 +41,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                      <h2>我已经是会员了</h2>
                      如果您已经是注册会员了，请在此直接登录
-                     <div class="signup_container" >
+                     <div class="signup_container" id="login_container" >
                          <form name="login_form" id="login_form" method="post" action="${pageContext.request.contextPath}/user/login">
                              <label for="login_username" class="label">用户名 : </label>
                              <div class="input_container">
-                                 <input name="username" type="text" id="login_username" size="30">
+                                 <input name="username" type="text" id="login_username" size="16">
                              </div>
                              <div class="clearfix"></div>
                              <label for="login_password" class="label">密码 : </label>
                              <div class="input_container">
-                                 <input name="password" type="password" id="login_password" size="30">
+                                 <input name="password" type="password" id="login_password" size="16">
                              </div>
                              <div class="clearfix"></div>
                               <!--此行作用来对齐button按钮-->
@@ -62,6 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                              <div class="clear"></div>
                              <%--<div align="center"><a href="http://video-share.ro/forgot.php">Forgot Password</a> | <a href="http://video-share.ro/forgot.php">Forgot Username</a></div>--%>
                          </form>
+                         <div id="login_tips"></div>
                      </div>
 
                      <p>成为会员以后:</p>
@@ -74,40 +76,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <div class="signup_right">
 
                  <h2>游客注册</h2>
-                 轻松注册为91视频网会员，享受观看更多视频
-                 <div class="signup_container">
+                 轻松注册为91视频网会员，观看更多视频
+                 <div class="signup_container" id="signup_container">
 
-                 <form name="login_form" id="login_form" method="post" action="">
+                 <form name="login_form" id="signup_form" method="post" action="${pageContext.request.contextPath}/user/toSignup">
 
                      <label for="newusername" class="label">用户名:</label>
                      <div class="input_container">
-
-
                          <input type="text" name="username" id="newusername">
-
-
-                         <div class="hint">请输入字母开头，包含数字的账号进行注册。</div>
-
+                         <div class="hint">用户名以字母开头，可以包含数字、下划线，长度不小于5位</div>
                      </div>
 
                      <div class="clearfix"></div>
-
                      <label for="email" class="label">email:</label>
-
                      <div class="input_container">
-
-
                          <input type="text" name="email" id="email">
-
-
                      </div>
-
                      <div class="clearfix"></div>
-
                      <label for="newpassword" class="label">密码:</label>
-
                      <div class="input_container">
                          <input type="password" name="password" id="newpassword">
+                         <div class="hint">密码可以包含字母，数字，区分大小写，长度不小于6位</div>
                      </div>
                      <div class="clearfix"></div>
                      <label for="cpassword" class="label">确认密码:</label>
@@ -128,8 +117,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      <div class="gform_footer top_label">
                          <input type="button" id="reg" class="button green" value="注 册"
                                 tabindex="5">
+                         <input id="saveCookieSign" type="checkbox" value="" />记住密码</p>
                      </div>
                      <div class="clearfix"></div>
+                     <div id="signup_tips"></div>
                  </form>
                  </div>
                  </div>

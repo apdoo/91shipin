@@ -2,7 +2,8 @@ package com.hexor.controller;
 
 import com.hexor.repo.User;
 import com.hexor.service.impl.UserService;
-import com.hexor.util.Configurer;
+import com.hexor.util.*;
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +27,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value="user")
-public class UserController extends BaseController{
+public class UserController {
     @Autowired
     @Qualifier("com.hexor.service.impl.UserService")
     private UserService userService = null;
@@ -66,32 +70,76 @@ public class UserController extends BaseController{
     }
     /**
      * 登录接口
-     * @param user
-     * @param session
-     * @param model
      * @return
      */
     @RequestMapping(value="login")
-    public ModelAndView login(User user,HttpSession session, ModelMap model){
-        System.out.println("login"+user.getUsername());
-        System.out.println("session"+ Configurer.getContextProperty("session.userinfo"));
-        session.setMaxInactiveInterval(5 * 60); // 设置session对象5分钟失效
-        // 将验证码保存在session对象中，key为validation_code
+    public ModelAndView login(User user,HttpSession session,HttpServletRequest request){
+        User result=userService.checkLogin(user);
+        //当数据库检验用户名密码
+        if(result==null){
+            return new ModelAndView("messagetip",ModelMapUtil.getMsg("用户名或密码错误！"));
+        }
+        //登录成功
+        try{
+            user.setLoginIp(IpUtil.getIpAddr(request));
+            user.setLoginTime(DateUtil.getStrOfDateTime());
+            userService.loginUpdate(user);
+        }catch (Exception e){
+        }
         session.setAttribute((String) Configurer.getContextProperty("session.userinfo"), user);
-        System.out.println("user"+user.getUsername());
-        ModelAndView modelAndView=new ModelAndView("myhome") ;
-
+        ModelAndView modelAndView=new ModelAndView("myhome",ModelMapUtil.getUserMap(user)) ;
         return modelAndView;
     }
 
     /**
      * 注册接口
      * @param session
-     * @param model
      */
     @RequestMapping(value="toSignup")
-    public void toSignup(HttpSession session, ModelMap model){
-        System.out.println("to sign..");
+    public ModelAndView toSignup(User user,HttpSession session,HttpServletRequest request){
+        String vcode=(String)session.getAttribute("validation_code");
+//        System.out.println("session-vcode:"+vcode);
+//        System.out.println("输入验证码:"+user.getVcode());
+        User result=userService.checkUser(user.getUsername());
+        //当数据库中存在同名用户的时候
+        if(result!=null){
+            return new ModelAndView("messagetip",ModelMapUtil.getMsg("已经存在用户名！"));
+        }
+        if(vcode!=null&&user.getVcode()!=null){
+            //转换大小写
+            vcode=vcode.toLowerCase();
+            String in=user.getVcode().toLowerCase();
+            if(!in.equals(vcode)){
+                return new ModelAndView("messagetip",ModelMapUtil.getMsg("验证码输入错误！"));
+            }
+        }
+        try{
+            user.setLoginIp(IpUtil.getIpAddr(request));
+            user.setSignupTime(DateUtil.getStrOfDateTime());
+            user.setLoginTime(DateUtil.getStrOfDateTime());
+        }catch (Exception e){
+            System.out.println("user/toSignup fall");
+            return new ModelAndView("messagetip",ModelMapUtil.getMsg("注册失败！"));
+        }
+        //验证成功，加入用户信息岛session与插入到数据库
+        session.setAttribute((String) Configurer.getContextProperty("session.userinfo"), user);
+        userService.insertUser(user);
+        return  new ModelAndView("myhome",ModelMapUtil.getUserMap(user)) ;
+    }
+    @RequestMapping(value = "autoLogin")
+    public void autoLogin(User user,HttpServletResponse response){
+        Map map=new HashMap();
+        map.put("msg","success");
+        User result=userService.checkLogin(user);
+        //当数据库中存在此用户
+        if(result!=null){
+            try {
+                ResponseUtil.outWriteJsonMessage(response,map);
+            } catch (IOException e) {
+
+            }
+        }
+
     }
 
 }

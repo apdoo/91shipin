@@ -28,26 +28,37 @@ public class UserService implements IUserService {
     }
     @Override
     public List<User> getAllUser() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return mapper.getAllUser();  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public User checkUser(String username) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return mapper.checkUser(username);  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void insertUser(User user) {
         //To change body of implemented methods use File | Settings | File Templates.
+         mapper.insertUser(user);
     }
 
     @Override
     public List<User> limit(Pager pager) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return mapper.limit(pager);  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public long getUsersCount() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return mapper.getUsersCount();  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public User checkLogin(User user) {
+        return mapper.checkLogin(user);  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void loginUpdate(User user) {
+        mapper.loginUpdate(user);
     }
 }

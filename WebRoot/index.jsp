@@ -20,6 +20,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
   </head>
   <body >
-    <a href="${pageContext.request.contextPath}/home">进入首页</a>
+  <table width="600" align="center"><tbody><tr><td>
+      <img src="${pageContext.request.contextPath}/resources/img/disclaimer_top.jpg">
+      <br>
+      <a href="${pageContext.request.contextPath}/home"><img src="${pageContext.request.contextPath}/resources/img/disclaimer_yes_cn.jpg" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://www.baidu.com"><img src="${pageContext.request.contextPath}/resources/img/disclaimer_no_cn.jpg" border="0"></a>
+
+      <br><br>
+
+      You need to be at least 18 years to access this website. Please confirm below that you are at least 18 years or use the "Cancel" button to leave.
+      <br><br>
+      <a href="${pageContext.request.contextPath}/home">Yes, I am at least 18 years old.</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://www.baidu.com">Cancel</a>
+
+  </td></tr>
+  </tbody></table>
   </body>
 </html>

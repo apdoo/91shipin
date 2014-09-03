@@ -10,429 +10,429 @@ import java.util.regex.Pattern;
  * @since JDK 1.6
  **/
 public class ValidateUtils {
-	/** ÕûÊı  */
-	private static final String  V_INTEGER="^-?[1-9]\\d*$";
+    /** æ•´æ•°  */
+    private static final String  V_INTEGER="^-?[1-9]\\d*$";
 
-    /**  ÕıÕûÊı */
+    /**  æ­£æ•´æ•° */
     private static final String V_Z_INDEX="^[1-9]\\d*$";
 
-    /**¸ºÕûÊı */
+    /**è´Ÿæ•´æ•° */
     private static final String V_NEGATIVE_INTEGER="^-[1-9]\\d*$";
 
-    /** Êı×Ö */
+    /** æ•°å­— */
     private static final String V_NUMBER="^([+-]?)\\d*\\.?\\d+$";
 
-    /**ÕıÊı */
-  	private static final String V_POSITIVE_NUMBER="^[1-9]\\d*|0$";
+    /**æ­£æ•° */
+    private static final String V_POSITIVE_NUMBER="^[1-9]\\d*|0$";
 
-    /** ¸ºÊı */
-  	private static final String V_NEGATINE_NUMBER="^-[1-9]\\d*|0$";
+    /** è´Ÿæ•° */
+    private static final String V_NEGATINE_NUMBER="^-[1-9]\\d*|0$";
 
-    /** ¸¡µãÊı */
-  	private static final String V_FLOAT="^([+-]?)\\d*\\.\\d+$";
+    /** æµ®ç‚¹æ•° */
+    private static final String V_FLOAT="^([+-]?)\\d*\\.\\d+$";
 
-    /** Õı¸¡µãÊı */
-  	private static final String V_POSTTIVE_FLOAT="^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$";
+    /** æ­£æµ®ç‚¹æ•° */
+    private static final String V_POSTTIVE_FLOAT="^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$";
 
-    /** ¸º¸¡µãÊı */
-  	private static final String V_NEGATIVE_FLOAT="^-([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*)$";
+    /** è´Ÿæµ®ç‚¹æ•° */
+    private static final String V_NEGATIVE_FLOAT="^-([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*)$";
 
-    /** ·Ç¸º¸¡µãÊı£¨Õı¸¡µãÊı + 0£© */
-  	private static final String V_UNPOSITIVE_FLOAT="^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*|0?.0+|0$";
+    /** éè´Ÿæµ®ç‚¹æ•°ï¼ˆæ­£æµ®ç‚¹æ•° + 0ï¼‰ */
+    private static final String V_UNPOSITIVE_FLOAT="^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*|0?.0+|0$";
 
-    /** ·ÇÕı¸¡µãÊı£¨¸º¸¡µãÊı + 0£© */
-  	private static final String V_UN_NEGATIVE_FLOAT="^(-([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*))|0?.0+|0$";
+    /** éæ­£æµ®ç‚¹æ•°ï¼ˆè´Ÿæµ®ç‚¹æ•° + 0ï¼‰ */
+    private static final String V_UN_NEGATIVE_FLOAT="^(-([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*))|0?.0+|0$";
 
-    /** ÓÊ¼ş */
-  	private static final String V_EMAIL="^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$";
+    /** é‚®ä»¶ */
+    private static final String V_EMAIL="^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$";
 
-    /** ÑÕÉ« */
-  	private static final String V_COLOR="^[a-fA-F0-9]{6}$";
+    /** é¢œè‰² */
+    private static final String V_COLOR="^[a-fA-F0-9]{6}$";
 
     /** url */
-  	private static final String V_URL="^http[s]?:\\/\\/([\\w-]+\\.)+[\\w-]+([\\w-./?%&=]*)?$";
+    private static final String V_URL="^http[s]?:\\/\\/([\\w-]+\\.)+[\\w-]+([\\w-./?%&=]*)?$";
 
-    /** ½öÖĞÎÄ */
-  	private static final String V_CHINESE="^[\\u4E00-\\u9FA5\\uF900-\\uFA2D]+$";
+    /** ä»…ä¸­æ–‡ */
+    private static final String V_CHINESE="^[\\u4E00-\\u9FA5\\uF900-\\uFA2D]+$";
 
-    /** ½öACSII×Ö·û */
-  	private static final String V_ASCII="^[\\x00-\\xFF]+$";
+    /** ä»…ACSIIå­—ç¬¦ */
+    private static final String V_ASCII="^[\\x00-\\xFF]+$";
 
-    /** ÓÊ±à */
-  	private static final String V_ZIPCODE="^\\d{6}$";
+    /** é‚®ç¼– */
+    private static final String V_ZIPCODE="^\\d{6}$";
 
-    /** ÊÖ»ú */
-  	private static final String V_MOBILE="^(1)[0-9]{10}$";
+    /** æ‰‹æœº */
+    private static final String V_MOBILE="^(1)[0-9]{10}$";
 
-    /** ipµØÖ· */
-  	private static final String V_IP4="^(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)$";
+    /** ipåœ°å€ */
+    private static final String V_IP4="^(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)$";
 
-    /** ·Ç¿Õ */
-  	private static final String V_NOTEMPTY="^\\S+$";
+    /** éç©º */
+    private static final String V_NOTEMPTY="^\\S+$";
 
-    /** Í¼Æ¬  */
-  	private static final String V_PICTURE="(.*)\\.(jpg|bmp|gif|ico|pcx|jpeg|tif|png|raw|tga)$";
+    /** å›¾ç‰‡  */
+    private static final String V_PICTURE="(.*)\\.(jpg|bmp|gif|ico|pcx|jpeg|tif|png|raw|tga)$";
 
-    /**  Ñ¹ËõÎÄ¼ş  */
-  	private static final String V_RAR="(.*)\\.(rar|zip|7zip|tgz)$";
+    /**  å‹ç¼©æ–‡ä»¶  */
+    private static final String V_RAR="(.*)\\.(rar|zip|7zip|tgz)$";
 
-    /** ÈÕÆÚ */
-  	private static final String V_DATE="^((((1[6-9]|[2-9]\\d)\\d{2})-(0?[13578]|1[02])-(0?[1-9]|[12]\\d|3[01]))|(((1[6-9]|[2-9]\\d)\\d{2})-(0?[13456789]|1[012])-(0?[1-9]|[12]\\d|30))|(((1[6-9]|[2-9]\\d)\\d{2})-0?2-(0?[1-9]|1\\d|2[0-8]))|(((1[6-9]|[2-9]\\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))-0?2-29-)) (20|21|22|23|[0-1]?\\d):[0-5]?\\d:[0-5]?\\d$";
+    /** æ—¥æœŸ */
+    private static final String V_DATE="^((((1[6-9]|[2-9]\\d)\\d{2})-(0?[13578]|1[02])-(0?[1-9]|[12]\\d|3[01]))|(((1[6-9]|[2-9]\\d)\\d{2})-(0?[13456789]|1[012])-(0?[1-9]|[12]\\d|30))|(((1[6-9]|[2-9]\\d)\\d{2})-0?2-(0?[1-9]|1\\d|2[0-8]))|(((1[6-9]|[2-9]\\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))-0?2-29-)) (20|21|22|23|[0-1]?\\d):[0-5]?\\d:[0-5]?\\d$";
 
-    /** QQºÅÂë  */
-  	private static final String V_QQ_NUMBER="^[1-9]*[1-9][0-9]*$";
+    /** QQå·ç   */
+    private static final String V_QQ_NUMBER="^[1-9]*[1-9][0-9]*$";
 
-    /** µç»°ºÅÂëµÄº¯Êı(°üÀ¨ÑéÖ¤¹úÄÚÇøºÅ,¹ú¼ÊÇøºÅ,·Ö»úºÅ) */
-  	private static final String V_TEL="^(([0\\+]\\d{2,3}-)?(0\\d{2,3})-)?(\\d{7,8})(-(\\d{3,}))?$";
+    /** ç”µè¯å·ç çš„å‡½æ•°(åŒ…æ‹¬éªŒè¯å›½å†…åŒºå·,å›½é™…åŒºå·,åˆ†æœºå·) */
+    private static final String V_TEL="^(([0\\+]\\d{2,3}-)?(0\\d{2,3})-)?(\\d{7,8})(-(\\d{3,}))?$";
 
-    /** ÓÃÀ´ÓÃ»§×¢²á¡£Æ¥ÅäÓÉÊı×Ö¡¢26¸öÓ¢ÎÄ×ÖÄ¸»òÕßÏÂ»®Ïß×é³ÉµÄ×Ö·û´® */
-  	private static final String V_USERNAME="^\\w+$";
+    /** ç”¨æ¥ç”¨æˆ·æ³¨å†Œã€‚åŒ¹é…ç”±æ•°å­—ã€26ä¸ªè‹±æ–‡å­—æ¯æˆ–è€…ä¸‹åˆ’çº¿ç»„æˆçš„å­—ç¬¦ä¸² */
+    private static final String V_USERNAME="^\\w+$";
 
-    /** ×ÖÄ¸ */
-  	private static final String V_LETTER="^[A-Za-z]+$";
+    /** å­—æ¯ */
+    private static final String V_LETTER="^[A-Za-z]+$";
 
-    /** ´óĞ´×ÖÄ¸  */
-  	private static final String V_LETTER_U="^[A-Z]+$";
+    /** å¤§å†™å­—æ¯  */
+    private static final String V_LETTER_U="^[A-Z]+$";
 
-    /** Ğ¡Ğ´×ÖÄ¸ */
-  	private static final String V_LETTER_I="^[a-z]+$";
+    /** å°å†™å­—æ¯ */
+    private static final String V_LETTER_I="^[a-z]+$";
 
-	/** Éí·İÖ¤  */
-  	private static final String V_IDCARD ="^(\\d{15}$|^\\d{18}$|^\\d{17}(\\d|X|x))$";
+    /** èº«ä»½è¯  */
+    private static final String V_IDCARD ="^(\\d{15}$|^\\d{18}$|^\\d{17}(\\d|X|x))$";
 
-  	/**ÑéÖ¤ÃÜÂë(Êı×ÖºÍÓ¢ÎÄÍ¬Ê±´æÔÚ)*/
-  	private static final String V_PASSWORD_REG="[A-Za-z]+[0-9]";
+    /**éªŒè¯å¯†ç (æ•°å­—å’Œè‹±æ–‡åŒæ—¶å­˜åœ¨)*/
+    private static final String V_PASSWORD_REG="[A-Za-z]+[0-9]";
 
-  	/**ÑéÖ¤ÃÜÂë³¤¶È(6-18Î»)*/
-  	private static final String V_PASSWORD_LENGTH="^\\d{6,18}$";
+    /**éªŒè¯å¯†ç é•¿åº¦(6-18ä½)*/
+    private static final String V_PASSWORD_LENGTH="^\\d{6,18}$";
 
-  	/**ÑéÖ¤Á½Î»Êı*/
-  	private static final String V_TWO£ßPOINT="^[0-9]+(.[0-9]{2})?$";
+    /**éªŒè¯ä¸¤ä½æ•°*/
+    private static final String V_TWOï¼¿POINT="^[0-9]+(.[0-9]{2})?$";
 
-  	/**ÑéÖ¤Ò»¸öÔÂµÄ31Ìì*/
-  	private static final String V_31DAYS="^((0?[1-9])|((1|2)[0-9])|30|31)$";
-
-  	
-  	private ValidateUtils(){}
-  	
-  	
-  	/**
-  	 * ÑéÖ¤ÊÇ²»ÊÇÕûÊı
-  	 * @param value ÒªÑéÖ¤µÄ×Ö·û´® ÒªÑéÖ¤µÄ×Ö·û´®
-  	 * @return  Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-  	 */
-  	public static boolean Integer(String value){
-  		return match(V_INTEGER,value);
-  	}
-
-  	/**
-  	 * ÑéÖ¤ÊÇ²»ÊÇÕıÕûÊı
-  	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-  	 * @return  Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-  	 */
-  	public static boolean Z_index(String value){
-  		return match(V_Z_INDEX,value);
-  	}
-
-  	/**
-  	 * ÑéÖ¤ÊÇ²»ÊÇ¸ºÕûÊı
-  	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-  	 * @return  Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-  	 */
-	public static boolean Negative_integer(String value){
-  		return match(V_NEGATIVE_INTEGER,value);
-  	}
-
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇÊı×Ö
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Number(String value){
-		return match(V_NUMBER,value);
-	}
-
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇÕıÊı
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean PositiveNumber(String value){
-		return match(V_POSITIVE_NUMBER,value);
-	}
-
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇ¸ºÊı
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean NegatineNumber(String value){
-		return match(V_NEGATINE_NUMBER,value);
-	}
-
-	/**
-	 * ÑéÖ¤Ò»¸öÔÂµÄ31Ìì
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Is31Days(String value){
-		return match(V_31DAYS,value);
-	}
-
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇASCII
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean ASCII(String value){
-		return match(V_ASCII,value);
-	}
+    /**éªŒè¯ä¸€ä¸ªæœˆçš„31å¤©*/
+    private static final String V_31DAYS="^((0?[1-9])|((1|2)[0-9])|30|31)$";
 
 
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇÖĞÎÄ
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Chinese(String value){
-		return match(V_CHINESE,value);
-	}
+    private ValidateUtils(){}
 
 
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯æ•´æ•°
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸² è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return  å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Integer(String value){
+        return match(V_INTEGER,value);
+    }
 
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇÑÕÉ«
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Color(String value){
-		return match(V_COLOR,value);
-	}
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯æ­£æ•´æ•°
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return  å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Z_index(String value){
+        return match(V_Z_INDEX,value);
+    }
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯è´Ÿæ•´æ•°
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return  å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Negative_integer(String value){
+        return match(V_NEGATIVE_INTEGER,value);
+    }
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯æ•°å­—
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Number(String value){
+        return match(V_NUMBER,value);
+    }
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯æ­£æ•°
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean PositiveNumber(String value){
+        return match(V_POSITIVE_NUMBER,value);
+    }
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯è´Ÿæ•°
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean NegatineNumber(String value){
+        return match(V_NEGATINE_NUMBER,value);
+    }
+
+    /**
+     * éªŒè¯ä¸€ä¸ªæœˆçš„31å¤©
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Is31Days(String value){
+        return match(V_31DAYS,value);
+    }
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯ASCII
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean ASCII(String value){
+        return match(V_ASCII,value);
+    }
+
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯ä¸­æ–‡
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Chinese(String value){
+        return match(V_CHINESE,value);
+    }
 
 
 
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇÈÕÆÚ
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Date(String value){
-		return match(V_DATE,value);
-	}
-
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇÓÊÏäµØÖ·
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Email(String value){
-		return match(V_EMAIL,value);
-	}
-
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇ¸¡µãÊı
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return  Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Float(String value){
-		return match(V_FLOAT,value);
-	}
-
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇÕıÈ·µÄÉí·İÖ¤ºÅÂë
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean IDcard(String value){
-		return match(V_IDCARD,value);
-	}
-
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇÕıÈ·µÄIPµØÖ·
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean IP4(String value){
-		return match(V_IP4,value);
-	}
-
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇ×ÖÄ¸
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Letter(String value){
-		return match(V_LETTER,value);
-	}
-
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇĞ¡Ğ´×ÖÄ¸
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Letter_i(String value){
-		return match(V_LETTER_I,value);
-	}
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯é¢œè‰²
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Color(String value){
+        return match(V_COLOR,value);
+    }
 
 
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇ´óĞ´×ÖÄ¸
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Letter_u(String value){
-		return match(V_LETTER_U,value);
-	}
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯æ—¥æœŸ
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Date(String value){
+        return match(V_DATE,value);
+    }
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯é‚®ç®±åœ°å€
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Email(String value){
+        return match(V_EMAIL,value);
+    }
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯æµ®ç‚¹æ•°
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return  å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Float(String value){
+        return match(V_FLOAT,value);
+    }
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯æ­£ç¡®çš„èº«ä»½è¯å·ç 
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean IDcard(String value){
+        return match(V_IDCARD,value);
+    }
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯æ­£ç¡®çš„IPåœ°å€
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean IP4(String value){
+        return match(V_IP4,value);
+    }
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯å­—æ¯
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Letter(String value){
+        return match(V_LETTER,value);
+    }
+
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯å°å†™å­—æ¯
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Letter_i(String value){
+        return match(V_LETTER_I,value);
+    }
 
 
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇÊÖ»úºÅÂë
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Mobile(String value){
-		return match(V_MOBILE,value);
-	}
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯å¤§å†™å­—æ¯
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Letter_u(String value){
+        return match(V_LETTER_U,value);
+    }
 
-	/**
-	 * ÑéÖ¤ÊÇ²»ÊÇ¸º¸¡µãÊı
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Negative_float(String value){
-		return match(V_NEGATIVE_FLOAT,value);
-	}
 
-	/**
-	 * ÑéÖ¤·Ç¿Õ
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Notempty(String value){
-		return match(V_NOTEMPTY,value);
-	}
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯æ‰‹æœºå·ç 
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Mobile(String value){
+        return match(V_MOBILE,value);
+    }
 
-	/**
-	 * ÑéÖ¤ÃÜÂëµÄ³¤¶È(6~18Î»)
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Number_length(String value){
-		return match(V_PASSWORD_LENGTH,value);
-	}
+    /**
+     * éªŒè¯æ˜¯ä¸æ˜¯è´Ÿæµ®ç‚¹æ•°
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Negative_float(String value){
+        return match(V_NEGATIVE_FLOAT,value);
+    }
 
-	/**
-	 * ÑéÖ¤ÃÜÂë(Êı×ÖºÍÓ¢ÎÄÍ¬Ê±´æÔÚ)
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Password_reg(String value){
-		return match(V_PASSWORD_REG,value);
-	}
+    /**
+     * éªŒè¯éç©º
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Notempty(String value){
+        return match(V_NOTEMPTY,value);
+    }
 
-	/**
-	 * ÑéÖ¤Í¼Æ¬
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Picture(String value){
-		return match(V_PICTURE,value);
-	}
+    /**
+     * éªŒè¯å¯†ç çš„é•¿åº¦(6~18ä½)
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Number_length(String value){
+        return match(V_PASSWORD_LENGTH,value);
+    }
 
-	/**
-	 * ÑéÖ¤Õı¸¡µãÊı
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Posttive_float(String value){
-		return match(V_POSTTIVE_FLOAT,value);
-	}
+    /**
+     * éªŒè¯å¯†ç (æ•°å­—å’Œè‹±æ–‡åŒæ—¶å­˜åœ¨)
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Password_reg(String value){
+        return match(V_PASSWORD_REG,value);
+    }
 
-	/**
-	 * ÑéÖ¤QQºÅÂë
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean QQnumber(String value){
-		return match(V_QQ_NUMBER,value);
-	}
+    /**
+     * éªŒè¯å›¾ç‰‡
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Picture(String value){
+        return match(V_PICTURE,value);
+    }
 
-	/**
-	 * ÑéÖ¤Ñ¹ËõÎÄ¼ş
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Rar(String value){
-		return match(V_RAR,value);
-	}
+    /**
+     * éªŒè¯æ­£æµ®ç‚¹æ•°
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Posttive_float(String value){
+        return match(V_POSTTIVE_FLOAT,value);
+    }
 
-	/**
-	 * ÑéÖ¤µç»°
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Tel(String value){
-		return match(V_TEL,value);
-	}
+    /**
+     * éªŒè¯QQå·ç 
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean QQnumber(String value){
+        return match(V_QQ_NUMBER,value);
+    }
 
-	/**
-	 * ÑéÖ¤Á½Î»Ğ¡Êı
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Two_point(String value){
-		return match(V_TWO£ßPOINT,value);
-	}
+    /**
+     * éªŒè¯å‹ç¼©æ–‡ä»¶
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Rar(String value){
+        return match(V_RAR,value);
+    }
 
-	/**
-	 * ÑéÖ¤·ÇÕı¸¡µãÊı
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Un_negative_float(String value){
-		return match(V_UN_NEGATIVE_FLOAT,value);
-	}
+    /**
+     * éªŒè¯ç”µè¯
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Tel(String value){
+        return match(V_TEL,value);
+    }
 
-	/**
-	 * ÑéÖ¤·Ç¸º¸¡µãÊı
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Unpositive_float(String value){
-		return match(V_UNPOSITIVE_FLOAT,value);
-	}
+    /**
+     * éªŒè¯ä¸¤ä½å°æ•°
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Two_point(String value){
+        return match(V_TWOï¼¿POINT,value);
+    }
 
-	/**
-	 * ÑéÖ¤URL
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Url(String value){
-		return match(V_URL,value);
-	}
+    /**
+     * éªŒè¯éæ­£æµ®ç‚¹æ•°
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Un_negative_float(String value){
+        return match(V_UN_NEGATIVE_FLOAT,value);
+    }
 
-	/**
-	 * ÑéÖ¤ÓÃ»§×¢²á¡£Æ¥ÅäÓÉÊı×Ö¡¢26¸öÓ¢ÎÄ×ÖÄ¸»òÕßÏÂ»®Ïß×é³ÉµÄ×Ö·û´®
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean UserName(String value){
-		return match(V_USERNAME,value);
-	}
+    /**
+     * éªŒè¯éè´Ÿæµ®ç‚¹æ•°
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Unpositive_float(String value){
+        return match(V_UNPOSITIVE_FLOAT,value);
+    }
 
-	/**
-	 * ÑéÖ¤ÓÊ±à
-	 * @param value ÒªÑéÖ¤µÄ×Ö·û´®
-	 * @return Èç¹ûÊÇ·ûºÏ¸ñÊ½µÄ×Ö·û´®,·µ»Ø <b>true </b>,·ñÔòÎª <b>false </b>
-	 */
-	public static boolean Zipcode(String value){
-		return match(V_ZIPCODE,value);
-	}
+    /**
+     * éªŒè¯URL
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Url(String value){
+        return match(V_URL,value);
+    }
 
-  	 /**
-     * @param regex ÕıÔò±í´ïÊ½×Ö·û´®
-     * @param str ÒªÆ¥ÅäµÄ×Ö·û´®
-     * @return Èç¹ûstr ·ûºÏ regexµÄÕıÔò±í´ïÊ½¸ñÊ½,·µ»Øtrue, ·ñÔò·µ»Ø false;
+    /**
+     * éªŒè¯ç”¨æˆ·æ³¨å†Œã€‚åŒ¹é…ç”±æ•°å­—ã€26ä¸ªè‹±æ–‡å­—æ¯æˆ–è€…ä¸‹åˆ’çº¿ç»„æˆçš„å­—ç¬¦ä¸²
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean UserName(String value){
+        return match(V_USERNAME,value);
+    }
+
+    /**
+     * éªŒè¯é‚®ç¼–
+     * @param value è¦éªŒè¯çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœæ˜¯ç¬¦åˆæ ¼å¼çš„å­—ç¬¦ä¸²,è¿”å› <b>true </b>,å¦åˆ™ä¸º <b>false </b>
+     */
+    public static boolean Zipcode(String value){
+        return match(V_ZIPCODE,value);
+    }
+
+    /**
+     * @param regex æ­£åˆ™è¡¨è¾¾å¼å­—ç¬¦ä¸²
+     * @param str è¦åŒ¹é…çš„å­—ç¬¦ä¸²
+     * @return å¦‚æœstr ç¬¦åˆ regexçš„æ­£åˆ™è¡¨è¾¾å¼æ ¼å¼,è¿”å›true, å¦åˆ™è¿”å› false;
      */
     private static boolean match(String regex, String str)
     {
