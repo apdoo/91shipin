@@ -40,6 +40,6 @@
     
     <!-- 针对mysql的分页 limit函数 -->
     <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="RePostResultMap">
-      select * from repost order by time desc limit #{index},#{data}
+      select * from repost order by rePostTime desc limit #{index},#{data}
     </select>
  </mapper>
