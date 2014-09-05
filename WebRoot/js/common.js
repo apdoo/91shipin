@@ -139,19 +139,40 @@ function pagecreat(root,path,current,pageCount,list){
     });
 
 }
-//生成视频列表js
+//videolist生成视频列表js
 function videolistcreat(root,list){
     var content="";
     //循环处理数组
     $.each(list, function(key, val) {
         var head=" <span class=\"lp_vidpara\">";
-        var img="<img src=\""+val.preImgSrc+"\"width=\"134\" height=\"83\" alt=\"\" class=\"lp_newvid1\">";
+        var aimg="<a href=\""+root+"/video/videoplay?vid="+val.videoId+"\"style=\"color:#BEBEBE;\" title=\""+val.title+"\">";
+        var img="<img src=\""+val.preImgSrc+"\"width=\"134\" height=\"83\" alt=\"\" class=\"lp_newvid1\">"+"</a>";
         var img2="<img src=\""+root+"/resources/img/lp_newvidarro.jpg\" width=\"4\" height=\"6\" alt=\"\" class=\"lp_newvidarro\">";
-        var info="<span class=\"lp_newdixt\"><a href=\""+root+"/video/videoplay?vid="+val.videoId+"\"style=\"color:#BEBEBE;\" title=\""+val.title+"\">"+val.title.substr(0,5)+".."+"</a>" ;
+        var info="<span class=\"lp_newdixt\"><a href=\""+root+"/video/videoplay?vid="+val.videoId+"\"style=\"color:#E0FF00;\" title=\""+val.title+"\">"+val.title.substr(0,5)+".."+"</a>" ;
         var bottom="<br/>"+val.infotime+"<br/>更新时间:"+val.updatetime+"</span></span>";
-        content=content+  head+img+img2+info+bottom;
+        content=content+ head+aimg+img+img2+info+bottom;
         $("#v_list").html(content);
     });
+}
+
+//home 生成视频的通用方法
+function homeVideoList(data,root){
+    var content="";
+    $.each(data, function(key, val) {
+//                       var head=" <span class=\"lp_vidpara\">";
+//                       var img="<img src=\""+val.preImgSrc+"\"width=\"134\" height=\"83\" alt=\"\" class=\"lp_newvid1\">";
+//                       var img2="<img src=\""+root+"/resources/img/lp_newvidarro.jpg\" width=\"4\" height=\"6\" alt=\"\" class=\"lp_newvidarro\">";
+//                       var info="<span class=\"lp_newdixt\"><a href=\""+root+"/video/videoplay?vid="+val.videoId+"\"style=\"color:#BEBEBE;\" title=\""+val.title+"\">"+val.title.substr(0,5)+".."+"</a>" ;
+//                       var bottom="<br/>"+val.infotime+"<br/>更新时间:"+val.updatetime+"</span></span>";
+//                       content=content+  head+img+img2+info+bottom;
+        var aimg="<a href=\""+root+"/video/videoplay?vid="+val.videoId+"\"style=\"color:#BEBEBE;\" title=\""+val.title+"\">";
+        var img="<img src=\""+val.preImgSrc+"\" width=\"152\" height=\"92\"  class=\"lp_featimg1\">"+"</a>";
+        var cp="<span class=\"cp_featpara\"><span style=\"float:left; width:250px; display:inline;\"><span class=\"cp_featname\"><b>"+"<a href=\""+root+"/video/videoplay?vid="+val.videoId+"\" style=\"color:#E0FF00;\">"+val.title+"</a> </b><br>自拍</span></span></span>";
+        var info="<span class=\"cp_featview\">"+val.infotime+"<br/>观看次数："+val.views+"<br/>更新时间：<br/>"+val.updatetime+"<br/><img src=\""+root+"/resources/img/rate.png\" width=\"15\" height=\"14\" alt=\"赞\">："+val.rate+"</span>";
+        var line="<img src=\""+root+"/resources/img/lp_featline.jpg\" width=\"634\" height=\"1\"   class=\"lp_featline\">";
+        content=content+aimg+img+cp+info+line;
+    });
+    $("#homevideolist").html(content);
 }
 //自动登录
 function checkLogin(root){

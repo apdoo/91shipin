@@ -3,7 +3,7 @@ body{
 margin:0px; padding:0px;
 font:11px/16px Arial, Helvetica, sans-serif;
 color: #666666;/*body字体的颜色*/
-background:#0C0D0D url(../img/bd_bg1px.jpg) repeat-x;
+background: #0C0D0D url(../img/bd_bg1px.jpg) repeat-x;
 font: 14px/22px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-weight: 300;
 -webkit-text-size-adjust: none;
@@ -208,14 +208,19 @@ float:left; width:660px;
 display:inline;
 }
 .lp_featnav a{ 
-float:left; background:#121313; 
-border-left:1px solid #272828; 
+float:left; background:#121313;
+border-left:1px solid #272828;
 border-right:1px solid #272828;
  border-bottom:1px solid #272828; 
  font:bold 12px Arial, Helvetica, sans-serif; 
- color:#656565; text-decoration:none; 
+ color:#656565; text-decoration:none;
  padding:13px 21px 10px 20px;
  }
+.lp_featnav a:hover {
+    /*background-color: #cdd0d2;*/
+    background-image: url('../img/button_bg.png'), url('../img/button_bg.png'), -moz-radial-gradient(center bottom, circle, rgba(183,229,45,1) 0,rgba(183,229,45,0) 100px),-moz-linear-gradient(#90de31, #7fc01e);
+    background-image: url('../img/button_bg.png'), url('../img/button_bg.png'), -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 100, from(rgba(183,229,45,1)), to(rgba(183,229,45,0))),-webkit-gradient(linear, 0% 0%, 0% 100%, from(#90de31), to(#7fc01e));
+}
 .cp_featpara{ 
 float:left; width:440px; 
 margin:28px 0 0 17px; 
@@ -235,7 +240,7 @@ display:inline; font:11px/18px Tahoma, verdana, arial;
 color:#A8A7A7;
 }
 .cp_featview{ 
-float:left; margin:5px 0 0 0; 
+float:right; margin:0 0 0 0;
 font:bold 11px/18px Tahoma, verdana, arial; 
 color:#719BA5; width:109px; 
 margin-left:50px;
@@ -475,5 +480,39 @@ label {
 .navigation .divider {
     color: #cdd0d2;
     padding: 0 3px 0 6px;
+}
+/*首页a标签样式*/
+.green.abutton:hover {
+    /*background-color: #cdd0d2;*/
+    background-image: url('../img/button_bg.png'), url('../img/button_bg.png'), -moz-radial-gradient(center bottom, circle, rgba(183,229,45,1) 0,rgba(183,229,45,0) 100px),-moz-linear-gradient(#90de31, #7fc01e);
+    background-image: url('../img/button_bg.png'), url('../img/button_bg.png'), -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 100, from(rgba(183,229,45,1)), to(rgba(183,229,45,0))),-webkit-gradient(linear, 0% 0%, 0% 100%, from(#90de31), to(#7fc01e));
+}
+.abutton.small {
+    font-size: 13px;
+}
+.abutton {
+    font: 15px Calibri, Arial, sans-serif;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
+    text-decoration: none !important;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: baseline;
+    position: relative;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-image: url('../img/button_bg.png');
+    background-position: bottom left, top right, 0 0, 0 0;
+    background-clip: border-box;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    -moz-box-shadow: 0 0 1px #fff inset;
+    -webkit-box-shadow: 0 0 1px #fff inset;
+    box-shadow: 0 0 1px #fff inset;
+    -webkit-transition: background-position 1s;
+    -moz-transition: background-position 1s;
+    transition: background-position 1s;
 }
 

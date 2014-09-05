@@ -73,11 +73,11 @@ public class VideoController {
             map.put("video",video);
             return new ModelAndView("videoplay",map);
     }
-    @RequestMapping(value="recently")
-    public void getRecentlyVideos(HttpServletResponse response){
-        List<VideoBean> list=videoService.selectRecently();
+    /**
+     * 首页获取5部视频列表通用方法
+     */
+    public void homeCommon(HttpServletResponse response,List<VideoBean> list){
         if(list!=null){
-            System.out.println(list.size());
             JSONArray jsonArray = JSONArray.fromObject(list);
             String result = jsonArray.toString();
             System.out.println(result);
@@ -88,7 +88,51 @@ public class VideoController {
             }
         }
     }
-
+    /**
+     * 获得最新5部视频
+     * @param response
+     */
+    @RequestMapping(value="recently")
+    public void getRecentlyVideos(HttpServletResponse response){
+        List<VideoBean> list=videoService.selectRecently();
+        homeCommon(response,list);
+    }
+    /**
+     * 获得观看最多的5部视频
+     * @param response
+     */
+    @RequestMapping(value="views")
+    public void getViews(HttpServletResponse response){
+        List<VideoBean> list=videoService.selectViews();
+        homeCommon(response,list);
+    }
+    /**
+     * 获得收藏最多的5部视频
+     * @param response
+     */
+    @RequestMapping(value="fav")
+    public void fav(HttpServletResponse response){
+        List<VideoBean> list=videoService.selectFav();
+        homeCommon(response,list);
+    }
+    /**
+     * 获得被赞最多的5部视频
+     * @param response
+     */
+    @RequestMapping(value="rate")
+    public void rate(HttpServletResponse response){
+        List<VideoBean> list=videoService.selectRate();
+        homeCommon(response,list);
+    }
+    /**
+     * 获得随机的5部视频
+     * @param response
+     */
+    @RequestMapping(value="rand")
+    public void rand(HttpServletResponse response){
+        List<VideoBean> list=videoService.selectRand();
+        homeCommon(response,list);
+    }
     /**
      * 获取视频列表
      * @param session

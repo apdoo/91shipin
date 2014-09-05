@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hexor.dao.IRePostMapper">
+   <sql id="columnRePost">
+       postid,
+       username,
+       rePostTime,
+       content,
+       status
+   </sql>
+ 
+    <resultMap type="com.hexor.repo.RePostBean" id="ReRePostResultMap">
+        <id property="id" column="id"/>
+        <result property="postid" column="postid"/>
+        <result property="username" column="username"/>
+        <result property="rePostTime" column="rePostTime"/>
+        <result property="content" column="content"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    
+     <select id="getAllRePost"   resultMap="RePostResultMap">
+         select  *  from repost
+    </select>
+
+    <insert id="insertRePost"  parameterType="com.hexor.repo.RePostBean" >
+        insert into repost(<include refid="columnRePost" />) values(
+        #{postid},
+        #{username},
+        #{rePostTime},
+        #{content},
+        #{status}
+        )
+    </insert>
+    
+    <!-- 查找总条数 -->
+     <select id="getRePostsCount"   resultType="long">
+             select count(*) from repost
+    </select>
+    
+    <!-- 针对mysql的分页 limit函数 -->
+    <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="RePostResultMap">
+      select * from repost order by time desc limit #{index},#{data}
+    </select>
+ </mapper>

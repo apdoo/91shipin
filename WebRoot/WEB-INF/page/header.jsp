@@ -15,7 +15,7 @@
           href="${pageContext.request.contextPath}/resources/css/style.css">
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/resources/css/button.css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/cookie.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 <script type="text/javascript">
@@ -43,7 +43,7 @@
         <%--<a href="#">Upload</a>--%>
         <a href="${pageContext.request.contextPath}/video/videoslist">视频列表</a>
         <a href="${pageContext.request.contextPath}/public/home">公告栏</a>
-        <a href="#">论坛</a>
+        <a href="${pageContext.request.contextPath}/bbs/home">论坛</a>
     </div>
 
     <div class="tp_smlgrnbg">

@@ -51,9 +51,6 @@
             	#{loginTime},
             	#{temp}
             	)
-        <selectKey keyProperty="id" resultType="int" order="AFTER">
-            select LAST_INSERT_ID()
-        </selectKey>
     </insert>
     
     <!-- 查找总条数 -->

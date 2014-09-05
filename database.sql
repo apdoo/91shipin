@@ -25,9 +25,27 @@ CREATE TABLE vedio(
 	 views int,
 	 favourite int
 )default charset=utf8;
--- alter table user modify id int auto_increment primary key;
 
-
+--帖子表    MySQL 中的 VARCHAR(255) 可以存放 1 - 255 个 UTF-8 格式的汉字 ...
+CREATE TABLE post(
+  id int NOT NULL AUTO_INCREMENT primary key,
+  type int,
+  username varchar(20),
+  time varchar(30),
+  title varchar(50),
+  content varchar(500),
+  postindex int,
+  status int
+)default charset=utf8;
+--帖子关联回复表
+ CREATE TABLE repost(
+    id int NOT NULL AUTO_INCREMENT primary key,
+    postid int,
+    username int,
+    rePostTime int,
+    content varchar(200),
+    status int
+ )default charset=utf8;
 --http://www.blogjava.net/GavinMiao/archive/2011/11/22/364499.html
 --导出表 MySQLdump -h localhost -u root -p test vedio>e:\mytable.sql
 --导入 MySQL -h localhost -u root -p test < e:\mytable.sql

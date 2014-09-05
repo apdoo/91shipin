@@ -18,37 +18,79 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
+   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
    <script type="text/javascript">
+       var root="${pageContext.request.contextPath}";//根路径
+       var recently=root+"/video/recently"; //最新视频
+       var views=root+"/video/views";
+       var fav=root+"/video/fav";
+       var rate=root+"/video/rate";
+       var rand=root+"/video/rand";
        $(function() {
-           root="${pageContext.request.contextPath}";
-           //获得cookie信息后发送到服务端验证
-           $.ajax({
-               type : "POST",
-               url : root+"/video/recently",
-               data : {
-               },
-               dataType:"json",
-               success : function(data) {
-                   var content="";
-                   $.each(data, function(key, val) {
-//                       var head=" <span class=\"lp_vidpara\">";
-//                       var img="<img src=\""+val.preImgSrc+"\"width=\"134\" height=\"83\" alt=\"\" class=\"lp_newvid1\">";
-//                       var img2="<img src=\""+root+"/resources/img/lp_newvidarro.jpg\" width=\"4\" height=\"6\" alt=\"\" class=\"lp_newvidarro\">";
-//                       var info="<span class=\"lp_newdixt\"><a href=\""+root+"/video/videoplay?vid="+val.videoId+"\"style=\"color:#BEBEBE;\" title=\""+val.title+"\">"+val.title.substr(0,5)+".."+"</a>" ;
-//                       var bottom="<br/>"+val.infotime+"<br/>更新时间:"+val.updatetime+"</span></span>";
-//                       content=content+  head+img+img2+info+bottom;
-                       var head="<img src=\""+val.preImgSrc+"\" width=\"152\" height=\"92\"  class=\"lp_featimg1\">";
-                       var cp="<span class=\"cp_featpara\"><span style=\"float:left; width:250px; display:inline;\"><span class=\"cp_featname\"><b>"+val.title+" </b><br>自拍</span></span></span>";
-                       var line="<img src=\""+root+"/resources/img/lp_featline.jpg\" width=\"634\" height=\"1\"   class=\"lp_featline\">";
-                       content=content+head+cp+line;
-                   });
-                   $("#videolist").html(content);
-               },
-               //请求出错的处理
-               error:function(){
-               }
+           //获取最新视频
+           $("#recently").click(function(){
+               $.ajax({
+                   type : "POST",
+                   url : recently,
+                   dataType:"json",
+                   success : function(data) {
+                       homeVideoList(data,root);
+                   },
+                   error:function(){
+                   }
+               });
            });
+           //
+           $("#views").click(function(){
+               $.ajax({
+                   type : "POST",
+                   url : views,
+                   dataType:"json",
+                   success : function(data) {
+                       homeVideoList(data,root);
+                   },
+                   error:function(){
+                   }
+               });
+           });
+           $("#fav").click(function(){
+               $.ajax({
+                   type : "POST",
+                   url : fav,
+                   dataType:"json",
+                   success : function(data) {
+                       homeVideoList(data,root);
+                   },
+                   error:function(){
+                   }
+               });
+           });
+           $("#rate").click(function(){
+               $.ajax({
+                   type : "POST",
+                   url : rate,
+                   dataType:"json",
+                   success : function(data) {
+                       homeVideoList(data,root);
+                   },
+                   error:function(){
+                   }
+               });
+           });
+           $("#rand").click(function(){
+               $.ajax({
+                   type : "POST",
+                   url : rand,
+                   dataType:"json",
+                   success : function(data) {
+                       homeVideoList(data,root);
+                   },
+                   error:function(){
+                   }
+               });
+           });
+           //默认进行自动点击
+           $("#recently").click();
        });
 
    </script>
@@ -70,8 +112,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<img src="${pageContext.request.contextPath}/resources/img/lp_watch.jpg" width="81" height="81" alt="" class="lp_watch">
 
 							<img src="${pageContext.request.contextPath}/resources/img/cp_watchit.jpg" width="93" height="15" alt="" class="cp_watchit">
-							<span class="cp_watcxt">Mauris convallis arcu sit amet leo.</span>
-							<a href="#" class="lp_watmore"><img src="${pageContext.request.contextPath}/resources/img/lp_watmore.jpg" width="35" height="28" alt=""></a>
+							<span class="cp_watcxt">定期更新各种自拍视频，让您看个痛快！</span>
+							<a href="${pageContext.request.contextPath}/video/videoslist" class="lp_watmore"><img src="${pageContext.request.contextPath}/resources/img/lp_watmore.jpg" width="35" height="28" alt=""></a>
 
 						</span>
 
@@ -79,8 +121,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<img src="${pageContext.request.contextPath}/resources/img/lp_uplad.jpg" width="81" height="81" alt="" class="lp_uplad">
 
 							<img src="${pageContext.request.contextPath}/resources/img/cp_watchit1.jpg" width="106" height="16" alt="" class="cp_watchit">
-							<span class="cp_watcxt">Mauris convallis arcu sit amet leo.</span>
-							<a href="#" class="lp_watmore"><img src="${pageContext.request.contextPath}/resources/img/lp_watmore.jpg" width="35" height="28" alt=""></a>
+							<span class="cp_watcxt">自拍视频上传，正在开发中..</span>
+							<a href="javascript:void(0)" class="lp_watmore"><img src="${pageContext.request.contextPath}/resources/img/lp_watmore.jpg" width="35" height="28" alt=""></a>
 
 						</span>
 
@@ -88,8 +130,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<img src="${pageContext.request.contextPath}/resources/img/lp_share.jpg" width="81" height="81" alt="" class="lp_uplad">
 
 							<img src="${pageContext.request.contextPath}/resources/img/cp_watchit2.jpg" width="93" height="16" alt="" class="cp_watchit">
-							<span class="cp_watcxt">Mauris convallis arcu sit amet leo.</span>
-							<a href="#" class="lp_watmore"><img src="${pageContext.request.contextPath}/resources/img/lp_watmore.jpg" width="35" height="28" alt=""></a>
+							<span class="cp_watcxt">自拍视频分享，正在开发中..</span>
+							<a href="javascript:void(0)" class="lp_watmore"><img src="${pageContext.request.contextPath}/resources/img/lp_watmore.jpg" width="35" height="28" alt=""></a>
 
 						</span>
 
@@ -97,29 +139,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                      <div class="lp_featpad">
                          <div class="lp_featnav">
-                             <a href="#">*最新 视频*</a>
-                             <a href="#">*观看 最多*</a>
+                             <a href="javascript:void(0)" id="recently">*最新 视频*</a>
+                             <a href="javascript:void(0)" id="views">*观看 最多*</a>
                              <a href="#">*讨论 最多*</a>
-                             <a href="#">*收藏 最多*</a>
-                             <a href="#">*获赞 最多*</a>
-                             <a href="#">*随机的一组*</a>
+                             <a href="javascript:void(0)" id="fav">*收藏 最多*</a>
+                             <a href="javascript:void(0)" id="rate">*获赞 最多*</a>
+                             <a href="javascript:void(0)" id="rand">*随机的一组*</a>
                          </div>
-                         <div id="videolist"></div>
-                         <img src="${pageContext.request.contextPath}/resources/img/lp_featline.jpg" width="634" height="1" alt="" class="lp_featline">
-
-                         <img src="${pageContext.request.contextPath}/resources/img/lp_featimg3.jpg" width="152" height="92" alt="" class="lp_featimg1">
-
-						<span class="cp_featpara">
-									<span style="float:left; width:250px; display:inline;"><span class="cp_featname"><b>Vivamus eu ipsum non diam dapibus egestas. </b><br>Best Music</span>
-
-									<span class="cp_featxt">In felis. In felis mi, ullamcorper at, cursus in, gravida vitae, purus. Praesent massa eros, euismod sed, sodales eu, tincidunt posuere</span><br>
-									</span>
-									<span class="cp_featview">5.5<br>Added :07.01.2009<br>From : Best Music<br>Views : 841<br>Comments:6<br>
-									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/lp_featstar.jpg" width="78" height="13" alt=""></a></span>
-						</span>
+                         <div id="homevideolist"></div>
                      </div>
-
-
                  </div>
 
                  <div id="rp_padd" >
@@ -232,7 +260,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
                  </div>
-
                  </div>
                  <jsp:include page="bottom.jsp"></jsp:include>
                  <!--网站尾部-->

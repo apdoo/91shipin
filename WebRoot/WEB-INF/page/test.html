@@ -127,7 +127,15 @@
                     }
                 }, false);
             } // end of runtime
-        }// end of master         
+            var str ="http://www.forasp.cn/tool/color 123.htm";
+            var str1 = encodeURI(str);
+            var str2 = encodeURIComponent(str);
+            console.info(str2) ;
+        }// end of master
+
+
+
+
     </script>
 
 </head>
@@ -161,6 +169,8 @@
         <button id="loadVideo" title="Load video button" >Load</button>
     </label>
 </div>
-<div title="Error message area" id="errorMsg" style="color:Red;"></div>
+<div title="Error message area" id="errorMsg" style="color:Red;">aaa</div>
+
+
 </body>
 </html>

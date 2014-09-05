@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <link rel="stylesheet" type="text/css"
             href="${pageContext.request.contextPath}/resources/css/style.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/video.css">
-      <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.0.min.js"></script>
+      <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/video.js"></script>
       <script type="text/javascript">
           $(function() {
@@ -48,8 +48,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <div id="contentpanel">
                      <div id="lp_padd">
                          <div class="videoContainer">
-                             <video id="myVideo" controls="" preload="auto"  width="593" height="389">
-                                 <source  src="${root}${video.videoId}" type="video/mp4">
+                             <video id="myVideo" controls="" preload="auto"  width="593" height="389" >
+                                 <source  src="${root}${video.videoId}"  type="video/mp4">
                                  <p>您的浏览器不支持html5，请更换</p>
                              </video>
                              <div class="caption"></div>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hexor.dao.IPostMapper">
+   <sql id="columnPost">
+        type,
+        username,
+        time,
+        title,
+        content,
+        postindex,
+        status
+   </sql>
+ 
+    <resultMap type="com.hexor.repo.PostBean" id="PostResultMap">
+        <id property="id" column="id"/>
+        <result property="type" column="type"/>
+        <result property="username" column="username"/>
+        <result property="time" column="time"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="postindex" column="postindex"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    
+     <select id="getAllPost"   resultMap="PostResultMap">
+         select  *  from post
+    </select>
+    <insert id="insertPost"  parameterType="com.hexor.repo.PostBean" >
+        insert into post(<include refid="columnPost" />) values(
+        #{type},
+        #{username},
+        #{time},
+        #{title},
+        #{content},
+        #{postindex},
+        #{status}
+        )
+    </insert>
+    
+    <!-- 查找总条数 -->
+     <select id="getPostsCount"   resultType="long">
+         select count(*) from post
+    </select>
+    
+    <!-- 针对mysql的分页 limit函数 -->
+    <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="PostResultMap">
+      select * from post order by time desc limit #{index},#{data}
+    </select>
+ </mapper>

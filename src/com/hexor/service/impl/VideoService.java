@@ -32,20 +32,14 @@ public class VideoService implements IVideoService {
     @Override
     public List<VideoBean> limit(Pager pager) {
         List<VideoBean> list= mapper.limit(pager);  //To change body of implemented methods use File | Settings | File Templates.
-        //在此加密视频路径
-        for(VideoBean bean:list){
-            try {
-                bean.setVideoId(EncodeUtil.encodeString(bean.getVideoId()));
-            } catch (IOException e) {
-                System.out.println("加密失败");
-            }
-        }
-        return list;
+
+        return encodeVideoId(list);
     }
 
     @Override
     public long getVideosCount() {
         return mapper.getVideosCount();  //To change body of implemented methods use File | Settings | File Templates.
+
     }
 
     @Override
@@ -55,26 +49,43 @@ public class VideoService implements IVideoService {
 
     @Override
     public List<VideoBean> selectRecently() {
-        return mapper.selectRecently();  //To change body of implemented methods use File | Settings | File Templates.
+        List<VideoBean> list= mapper.selectRecently();  //To change body of implemented methods use File | Settings | File Templates.
+        return encodeVideoId(list);
     }
 
     @Override
     public List<VideoBean> selectRate() {
-        return mapper.selectRate();  //To change body of implemented methods use File | Settings | File Templates.
+        List<VideoBean> list= mapper.selectRate();  //To change body of implemented methods use File | Settings | File Templates.
+        return encodeVideoId(list);
     }
 
     @Override
     public List<VideoBean> selectFav() {
-        return mapper.selectFav();  //To change body of implemented methods use File | Settings | File Templates.
+        List<VideoBean> list= mapper.selectFav();  //To change body of implemented methods use File | Settings | File Templates.
+        return encodeVideoId(list);
     }
 
     @Override
     public List<VideoBean> selectViews() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        List<VideoBean> list= mapper.selectViews();  //To change body of implemented methods use File | Settings | File Templates.
+        return encodeVideoId(list);
     }
 
     @Override
     public List<VideoBean> selectRand() {
-        return mapper.selectRand();  //To change body of implemented methods use File | Settings | File Templates.
+        List<VideoBean> list= mapper.selectRand();  //To change body of implemented methods use File | Settings | File Templates.
+        return encodeVideoId(list);
+    }
+
+    public List<VideoBean> encodeVideoId(List<VideoBean> list){
+        //在此加密视频路径
+        for(VideoBean bean:list){
+            try {
+                bean.setVideoId(EncodeUtil.encodeString(bean.getVideoId()));
+            } catch (IOException e) {
+                System.out.println("加密失败");
+            }
+        }
+        return list;
     }
 }

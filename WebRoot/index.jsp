@@ -30,8 +30,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       You need to be at least 18 years to access this website. Please confirm below that you are at least 18 years or use the "Cancel" button to leave.
       <br><br>
       <a href="${pageContext.request.contextPath}/home">Yes, I am at least 18 years old.</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://www.baidu.com">Cancel</a>
-
   </td></tr>
   </tbody></table>
+  <p align="center" style="color: #ff2285">温馨提示：请使用IE8以上版本的浏览器以获得更好的用户体验。当您发现您的浏览器在浏览网站的时候出现页面错乱的情况，推荐使用谷歌浏览器</p>
   </body>
 </html>
