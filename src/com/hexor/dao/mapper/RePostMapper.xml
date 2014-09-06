@@ -10,7 +10,7 @@
        status
    </sql>
  
-    <resultMap type="com.hexor.repo.RePostBean" id="ReRePostResultMap">
+    <resultMap type="com.hexor.repo.RePostBean" id="RePostResultMap">
         <id property="id" column="id"/>
         <result property="postid" column="postid"/>
         <result property="username" column="username"/>
