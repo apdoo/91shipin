@@ -51,7 +51,7 @@ CREATE TABLE post(
 --导入 MySQL -h localhost -u root -p test < e:\mytable.sql
 --替换字段 某个值 update vedio set videoId=replace(videoId,'f:/vedios/new/','');
 --update vedio set videoId=replace(videoId,'c:/vedios/default/','');
---update vedio set videoId=replace(videoId,'c:/vedios/new20130830/','');
+--update vedio set videoId=replace(videoId,'c:/vedios/new20140830/','');
 --增加字段 alter table vedio add rate int,add views int,add favourite int;
 
 
