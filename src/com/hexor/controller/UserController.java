@@ -43,7 +43,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value="signup")
-       public ModelAndView signup(HttpSession session, ModelMap model){
+    public ModelAndView signup(HttpSession session, ModelMap model){
         return new ModelAndView("signup");
     }
 
@@ -77,7 +77,8 @@ public class UserController {
         User result=userService.checkLogin(user);
         //当数据库检验用户名密码
         if(result==null){
-            return new ModelAndView("messagetip",ModelMapUtil.getMsg("用户名或密码错误！"));
+            Map map=ModelMapUtil.getMsg("用户名或密码错误!");
+            return new ModelAndView("messagetip",map);
         }
         //登录成功
         try{
@@ -85,6 +86,7 @@ public class UserController {
             user.setLoginTime(DateUtil.getStrOfDateTime());
             userService.loginUpdate(user);
         }catch (Exception e){
+            System.out.println("登录异常");
         }
         session.setAttribute((String) Configurer.getContextProperty("session.userinfo"), user);
         ModelAndView modelAndView=new ModelAndView("myhome",ModelMapUtil.getUserMap(user)) ;
@@ -119,7 +121,8 @@ public class UserController {
             user.setLoginTime(DateUtil.getStrOfDateTime());
         }catch (Exception e){
             System.out.println("user/toSignup fall");
-            return new ModelAndView("messagetip",ModelMapUtil.getMsg("注册失败！"));
+            Map map=ModelMapUtil.getMsg("注册失败!");
+            return new ModelAndView("messagetip",map);
         }
         //验证成功，加入用户信息岛session与插入到数据库
         session.setAttribute((String) Configurer.getContextProperty("session.userinfo"), user);
