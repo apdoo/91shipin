@@ -25,4 +25,16 @@ public class ModelMapUtil {
         map.put("userinfo",user) ;
         return map;
     }
+
+    /**
+     * 获得map的通用方法
+     * @param key
+     * @param obj
+     * @return
+     */
+    public static Map getMap(String key,Object obj){
+        Map map=new HashMap();
+        map.put(key,obj) ;
+        return map;
+    }
 }

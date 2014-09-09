@@ -32,6 +32,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               var root="${pageContext.request.contextPath}";
               var path="/video/videoslist?wpage=";
               pagecreat(root,path,current,pageCount,list);
+              //生成视频列表
+              videolistcreat(root,list);
           });
       </script>
   </head>

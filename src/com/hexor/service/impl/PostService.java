@@ -48,4 +48,9 @@ public class PostService implements IPostService {
     public List<PostBean> limit(Pager pager) {
         return mapper.limit(pager);  //To change body of implemented methods use File | Settings | File Templates.
     }
+
+    @Override
+    public PostBean getPostBean(String id) {
+        return mapper.getPostBean(id);  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

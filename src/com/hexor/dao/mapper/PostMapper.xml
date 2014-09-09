@@ -47,4 +47,8 @@
     <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="PostResultMap">
       select * from post order by time desc limit #{index},#{data}
     </select>
+
+    <select id="getPostBean"   parameterType="String" resultType="com.hexor.repo.PostBean">
+            select * from post where id=#{value}
+    </select>
  </mapper>

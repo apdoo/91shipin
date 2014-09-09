@@ -20,25 +20,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
       <link rel="stylesheet" type="text/css"
             href="${pageContext.request.contextPath}/resources/css/style.css">
-      <link rel="stylesheet" type="text/css"
-            href="${pageContext.request.contextPath}/resources/css/bbs.css">
-
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
-
       <script type="text/javascript">
           $(function() {
-              //当前页数
-              var current="${pager.currentPage}";
-              //总页数
-              var pageCount="${pager.pageCount}";
-              //处理object数组
-              var list=${list};
-              var root="${pageContext.request.contextPath}";
-              var path="/bbs/home?wpage=";
-              pagecreat(root,path,current,pageCount,list);
-              //生成视频列表
-              bbshomelist(root,list);
-
           });
       </script>
   </head>
@@ -49,12 +33,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <!--网站头-->
                  <jsp:include page="header.jsp"></jsp:include>
                  <!--内容-->
-                 <div id="box">
-                     <ul class="list" id="bbslist">
-                     </ul>
-                   </div>
-                 <div class="navigation page-navigation" style="margin: auto;"
-                      id="pagenumber"></div>
                  <jsp:include page="bottom.jsp"></jsp:include>
                  <!--网站尾部-->
 

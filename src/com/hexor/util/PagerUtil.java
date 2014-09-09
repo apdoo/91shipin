@@ -23,7 +23,7 @@ public class PagerUtil {
 		pager.setCurrentPage(currentP);
 		return pager;
 	}
-	/**设置分页
+	/**使用自定义的一页显示条数，设置分页
 	 * @param count
 	 * @param currentP
 	 * @return

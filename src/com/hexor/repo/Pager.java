@@ -46,9 +46,9 @@ public class Pager {
         this.data = data;
     }
 
-    /*public String toString() {
+     public String toString() {
         String s="分页信息:"+count+"起始"+index+"总条数"+data;
         return s;
-    }*/
+    }
 }
 

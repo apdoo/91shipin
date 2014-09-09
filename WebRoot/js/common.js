@@ -77,11 +77,8 @@ function checkEmail(str){
     }
 }
 
-//分页方法
-//分页和内容生成
+//分页生成方法
 function pagecreat(root,path,current,pageCount,list){
-    //生成视频列表
-    videolistcreat(root,list);
     //生成上一页箭头
     $("#pagenumber").append("<a>«上一页</a>");
     //处理长度 生成页数
@@ -154,8 +151,17 @@ function videolistcreat(root,list){
         $("#v_list").html(content);
     });
 }
+//bbshome生成帖子列表方法
+function bbshomelist(root,list){
+    $("#bbslist").empty();
+    //循环处理数组
+    $.each(list, function(key, val) {
+        var content="<li><span>"+val.username+"["+val.time+"]   </span><a href=\""+root+"/bbs/postdetail?pid="+val.id+"\">"+val.title+"</a></li>";
+        $("#bbslist").append(content);
+    });
+}
 
-//home 生成视频的通用方法
+//home.jsp 生成视频的通用方法
 function homeVideoList(data,root){
     var content="";
     $.each(data, function(key, val) {

@@ -19,4 +19,5 @@ public interface IPostMapper {
      public void insertPost(PostBean bean);
      public long getPostsCount();
      public List<PostBean> limit(Pager pager);
+     public PostBean getPostBean(String id);
 }
