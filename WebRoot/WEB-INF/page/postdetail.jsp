@@ -33,6 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <!--网站头-->
                  <jsp:include page="header.jsp"></jsp:include>
                  <!--内容-->
+                 ${bean.username}
                  <jsp:include page="bottom.jsp"></jsp:include>
                  <!--网站尾部-->
 
