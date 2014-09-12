@@ -269,7 +269,7 @@ public class DateUtil {
     }
 
     /**
-     * 获取当月第一�?
+     * 获取当月第一天
      *
      * @author WikerYong
      * @version 2011-11-21 下午04:45:06
@@ -506,7 +506,18 @@ public class DateUtil {
                 + c.get(Calendar.SECOND) + "秒 " + c.get(Calendar.MILLISECOND)  
                 + " 毫秒"; 
     }
-    
+
+    /**
+     * 获得多少天以后的日期 返回yyyy-MM-dd
+     */
+    public String  nDaysAftertoday(int n){
+        SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+        Calendar rightNow = Calendar.getInstance();
+        //rightNow.add(Calendar.DAY_OF_MONTH,-1);
+        rightNow.add(Calendar.DAY_OF_MONTH,+n);
+        return  df.format(rightNow.getTime());
+    }
+
     public static void main(String[] args) {
         System.out.println(getFirstDayOfMonth(2013,2));
         System.out.println(getLastDayOfMonth(2013,2));

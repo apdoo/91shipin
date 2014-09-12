@@ -4,6 +4,7 @@ import com.hexor.repo.Pager;
 import com.hexor.repo.VideoBean;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,4 +25,5 @@ public interface IVideoService {
     public List<VideoBean> selectFav();
     public List<VideoBean> selectViews();
     public List<VideoBean> selectRand();
+    public void videoAddSelf(Map map);
 }

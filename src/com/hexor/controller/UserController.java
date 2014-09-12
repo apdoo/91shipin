@@ -130,10 +130,11 @@ public class UserController {
         return  new ModelAndView("myhome",ModelMapUtil.getUserMap(user)) ;
     }
     @RequestMapping(value = "autoLogin")
-    public void autoLogin(User user,HttpServletResponse response){
+    public void autoLogin(User user,HttpServletResponse response,HttpSession session){
         Map map=new HashMap();
         map.put("msg","success");
         User result=userService.checkLogin(user);
+        session.setAttribute((String) Configurer.getContextProperty("session.userinfo"), user);
         //当数据库中存在此用户
         if(result!=null){
             try {

@@ -28,4 +28,8 @@ public interface IUserMapper {
 
     public void loginUpdate(User user);
 
+    public User getUserByUsername(String id);
+    public void reducePointsById(String id);
+    public void updateUser(User user);
+
 }

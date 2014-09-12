@@ -5,6 +5,7 @@ import com.hexor.repo.VideoBean;
 import com.hexor.service.impl.VideoService;
 import com.hexor.util.*;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -165,4 +166,30 @@ public class VideoController {
         modelMap.put("list", result);
         return  new ModelAndView("videoslist",modelMap);
     }
+
+    /**
+     * 视频的被赞 收藏 观看次数自增接口
+     * @param type 对应views rate favouite
+     * @param  vid 视频vid
+     * @param response
+     */
+    @RequestMapping(value="videoSelf")
+    public void videoSelf(@RequestParam(value = "type",required = true,defaultValue = "-1") String type,@RequestParam("vid")String vid,HttpServletResponse response){
+         Map map=new HashMap();
+        String videoId= "";
+        try {
+            videoId = EncodeUtil.decodeString(vid);
+        } catch (IOException e) {
+        }
+         map.put("videoId",videoId);
+         map.put(type,type);
+         videoService.videoAddSelf(map);
+        JSONObject json=new JSONObject();
+        json.put("reslut","success");
+        try {
+            ResponseUtil.outWriteJson(response,json.toString());
+        } catch (IOException e) {
+        }
+    }
+
 }

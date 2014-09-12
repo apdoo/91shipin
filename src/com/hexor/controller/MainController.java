@@ -28,8 +28,20 @@ public class MainController {
     @RequestMapping(value="home")
     public String home(HttpSession session, HttpServletResponse response,ModelMap model){
         //在此判断是否记住
-        User user = (User) session.getAttribute("user");
         return "home";
     }
+
+    /**
+     * 访问视频页面受限
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="videoviewlimit")
+    public String videoviewlimit(HttpSession session, HttpServletResponse response,ModelMap model){
+        //在此判断是否记住
+        return "videoviewlimit";
+    }
+
 
 }

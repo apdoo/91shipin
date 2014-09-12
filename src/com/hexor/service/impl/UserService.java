@@ -61,4 +61,20 @@ public class UserService implements IUserService {
     public void loginUpdate(User user) {
         mapper.loginUpdate(user);
     }
+
+    @Override
+    public User getUserByUsername(String id) {
+        return mapper.getUserByUsername(id);
+    }
+
+    @Override
+    public void reducePointsById(String id) {
+        mapper.reducePointsById(id);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        mapper.updateUser(user);
+    }
+
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -75,6 +76,12 @@ public class VideoService implements IVideoService {
     public List<VideoBean> selectRand() {
         List<VideoBean> list= mapper.selectRand();  //To change body of implemented methods use File | Settings | File Templates.
         return encodeVideoId(list);
+    }
+
+    @Override
+    public void videoAddSelf(Map map) {
+        System.out.println("mmap"+map.toString());
+        mapper.videoAddSelf(map);
     }
 
     public List<VideoBean> encodeVideoId(List<VideoBean> list){

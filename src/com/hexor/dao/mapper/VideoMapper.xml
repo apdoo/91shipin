@@ -44,26 +44,42 @@
     <select id="selectByVideoId" parameterType="String" resultType="com.hexor.repo.VideoBean">
           select * from vedio where videoId=#{value} limit 1
     </select>
-    <!--根据发布时间查找最新的3条视频信息-->
+    <!--根据发布时间查找最新的5条视频信息-->
      <select id="selectRecently" resultMap="vedioResultMap">
          select * from vedio order by updatetime desc limit 5
      </select>
-    <!--根据赞数查找获得赞最高的三条视频信息-->
+    <!--根据赞数查找获得赞最高的5条视频信息-->
     <select id="selectRate" resultMap="vedioResultMap">
          select * from vedio order by rate desc limit 5
      </select>
-    <!--根据收藏数查找获得赞最高的三条视频信息-->
+    <!--根据收藏数查找获得赞最高的5条视频信息-->
     <select id="selectFav" resultMap="vedioResultMap">
          select * from vedio order by favourite desc limit 5
      </select>
-    <!--根据观看数查找获得赞最高的三条视频信息-->
+    <!--根据观看数查找获得赞最高的5条视频信息-->
     <select id="selectViews" resultMap="vedioResultMap">
          select * from vedio order by views desc limit 5
      </select>
-    <!--随机3条视频信息-->
+    <!--随机5条视频信息-->
     <select id="selectRand" resultMap="vedioResultMap">
         select *, rand() as random from vedio order by random limit 5
      </select>
 
+    <!--rate fav views 动态加1 如果set中一个条件都不满足，即set中包含的内容为空的时候就会报错。-->
+    <update id="videoAddSelf" parameterType="Map">
+        update vedio
+        <set>
+            <if test="rate!=null">
+                rate=if(isnull(rate),0,rate)+1,
+            </if>
+            <if test="favourite!=null">
+                favourite=if(isnull(favourite),0,favourite)+1,
+            </if>
+            <if test="views!=null">
+                views=if(isnull(views),0,views)+1
+            </if>
+        </set>
+        where videoId=#{videoId}
+    </update>
 
  </mapper>

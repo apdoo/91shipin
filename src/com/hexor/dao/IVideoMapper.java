@@ -5,19 +5,21 @@ import com.hexor.repo.VideoBean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Service("com.hexor.dao.IVideoMapper")
 public interface IVideoMapper {
-	//mysql·ÖÒ³²éÑ¯
+	//mysqlï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
 	public List<VideoBean> limit(Pager pager);
-	//²éÑ¯×ÜÌõÊý
+	//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public long getVideosCount();
-    //¸ù¾Ýid²éÑ¯
+    //ï¿½ï¿½ï¿½idï¿½ï¿½Ñ¯
     public VideoBean selectByVideoId(String vid);
     public List<VideoBean> selectRecently();
     public List<VideoBean> selectRate();
     public List<VideoBean> selectFav();
     public List<VideoBean> selectViews();
     public List<VideoBean> selectRand();
+    public void videoAddSelf(Map map);
 }
