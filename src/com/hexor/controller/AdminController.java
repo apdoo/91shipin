@@ -1,6 +1,9 @@
 package com.hexor.controller;
 
+import com.hexor.repo.Pager;
+import com.hexor.repo.User;
 import com.hexor.service.impl.UserService;
+import com.hexor.util.PagerUtil;
 import com.hexor.util.ResponseUtil;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -72,21 +76,16 @@ public class AdminController {
      * 获得用户信息
      */
     @RequestMapping(value = "getUsers")
-    public void getUsers(HttpServletResponse response,HttpServletRequest request){
-        System.out.println("getUsers...");
-        String page=request.getParameter("page");
-        String rows=request.getParameter("rows");
+    public void getUsers(@RequestParam(value = "page")String page,@RequestParam(value = "rows")String rows, HttpServletResponse response,HttpServletRequest request){
         System.out.println("page:"+page+"rows:"+rows);
         Map map = new HashMap();
-        ArrayList al = new ArrayList();
-        for(int i=0;i<Integer.parseInt(rows);i++){
-            Map m = new HashMap();
-            m.put("itemid", String.valueOf(i));
-            m.put("attr1", page);
-            al.add(m);
-        }
-        map.put("total", 50);
-        map.put("rows", al);
+        Pager pager=new Pager();
+        long count=userService.getUsersCount();
+        pager.setData(Integer.parseInt(rows));
+        pager= PagerUtil.build(PagerUtil.SetPager(pager,count,Integer.parseInt(page)));
+        List<User> list=userService.limit(pager);
+        map.put("total", 50); //总页数
+        map.put("rows", list); //分页查询到的数据
         JSONObject json = new JSONObject();
         json=json.fromObject(map); //将map对象转换成为json对象
         System.out.println("--------"+json.toString());

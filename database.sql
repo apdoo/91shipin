@@ -41,11 +41,23 @@ CREATE TABLE post(
  CREATE TABLE repost(
     id int NOT NULL AUTO_INCREMENT primary key,
     postid int,
-    username int,
-    rePostTime int,
+    username varchar(20),
+    rePostTime varchar(30),
     content varchar(200),
     status int
  )default charset=utf8;
+--访问视频播放日志表
+ CREATE TABLE vistlog(
+    id int NOT NULL AUTO_INCREMENT primary key,
+    username varchar(20),
+    ip varchar(20),
+    url varchar(100),
+    time varchar(30)
+ )default charset=utf8;
+--播放记录表
+
+
+
 --http://www.blogjava.net/GavinMiao/archive/2011/11/22/364499.html
 --导出表 MySQLdump -h localhost -u root -p test vedio>e:\mytable.sql
 --导入 MySQL -h localhost -u root -p test < e:\mytable.sql

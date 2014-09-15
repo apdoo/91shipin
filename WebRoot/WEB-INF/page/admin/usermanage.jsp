@@ -65,8 +65,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <table id="tt">
       <thead>
       <tr>
-          <th field="itemid" width="100">id</th>
-          <th field="attr1" width="100">name</th>
+          <th field="username" width="100">用户名</th>
+          <th field="email" width="100">邮箱</th>
+          <th field="signupTime" width="100">注册时间</th>
+          <th field="points" width="100">积分</th>
+          <th field="type" width="100">类型</th>
+          <th field="loginIp" width="100">登录ip</th>
+          <th field="loginTime" width="100">最后登录时间</th>
+          <th field="temp" width="100">temp</th>
       </tr>
       </thead>
   </table>
