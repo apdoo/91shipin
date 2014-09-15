@@ -64,11 +64,15 @@
     </select>
     <!--登录更新用户信息-->
     <update id="loginUpdate" parameterType="com.hexor.repo.User">
-              UPDATE user SET loginIp=#{loginIp}, loginTime=#{loginTime}
+              UPDATE user SET loginIp=#{loginIp}, loginTime=#{loginTime} where id=#{id}
     </update>
-    <!--根据id查找用户-->
+    <!--根据用户名查找用户-->
     <select id="getUserByUsername" parameterType="String" resultType="com.hexor.repo.User">
           select * from user where username=#{value}
+    </select>
+    <!--根据id查找用户-->
+    <select id="getUserById" parameterType="String" resultType="com.hexor.repo.User">
+          select * from user where id=#{value}
     </select>
     <!--根据id查找用户并且扣除用户积分-10-->
     <update id="reducePointsById" parameterType="String">
@@ -79,15 +83,20 @@
         update user
          <set>
              <if test="points!=null">
-                 points=points,
+                 points=#{points},
              </if>
              <if test="type!=null">
-                 type=type,
+                 type=#{type},
              </if>
              <if test="temp!=null">
-                 temp=temp
+                 temp=#{temp}
              </if>
          </set>
         where id=#{id}
     </update>
+
+    <!--查找所有包月、季度、年的会员-->
+    <select id="getUserByType" resultMap="userResultMap">
+        select * from user where type='1' or type='2' or type='3'
+    </select>
  </mapper>

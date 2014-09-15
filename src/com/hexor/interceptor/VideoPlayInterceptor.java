@@ -88,19 +88,30 @@ public class VideoPlayInterceptor implements HandlerInterceptor {
            User dbUser=userService.getUserByUsername(user.getUsername());
            System.out.println("dbuser"+dbUser.toString());
            //如果用户为会员查看用户是否是付费会员--推荐在Task里进行操作数据库，将到期的付费会员改变为不是付费会员
-           //当用户为普通会员且积分大于10，进行积分增加
+           //当用户为普通会员且积分大于10
            if(dbUser!=null&&"0".equals(dbUser.getType()+"")&&dbUser.getPoints()>=10){
                //从数据库中查找用户的积分进行扣除
                 userService.reducePointsById(dbUser.getId()+"");
-           }else{
+           }
+           //会员到期 通过task定时器任务去做会员变更
+           else if(dbUser!=null&&("12345".contains(dbUser.getType()+""))){
+               System.out.println("not intercep");
+           }
+           else{
                httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"/videoviewlimit");
            }
 
+       }//当时游客的时候，只能看三次
+       else{
+           long count=service.getIpVistCounts(ip);
+           if(count>3){
+               System.out.println("ccccount"+count);
+               httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"/videoviewlimit");
+           }
        }
         System.out.println(vistLog.toString());
         service.insertVistLog(vistLog);
         //判断当前用户或者匿名访问用户是否能够继续访问视频页面
-
         return true;
     }
 

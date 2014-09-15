@@ -49,5 +49,15 @@ public class VistLogService implements IVistLogService {
         return mapper.limit(pager);  //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    @Override
+    public long getIpVistCounts(String ip) {
+        return mapper.getIpVistCounts(ip);
+    }
+
+    @Override
+    public void deleteAll() {
+        mapper.deleteAll();
+    }
+
 
 }

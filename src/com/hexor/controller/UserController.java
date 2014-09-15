@@ -82,14 +82,14 @@ public class UserController {
         }
         //登录成功
         try{
-            user.setLoginIp(IpUtil.getIpAddr(request));
-            user.setLoginTime(DateUtil.getStrOfDateTime());
-            userService.loginUpdate(user);
+            result.setLoginIp(IpUtil.getIpAddr(request));
+            result.setLoginTime(DateUtil.getStrOfDateTime());
+            userService.loginUpdate(result);
         }catch (Exception e){
             System.out.println("登录异常");
         }
-        session.setAttribute((String) Configurer.getContextProperty("session.userinfo"), user);
-        ModelAndView modelAndView=new ModelAndView("myhome",ModelMapUtil.getUserMap(user)) ;
+        session.setAttribute((String) Configurer.getContextProperty("session.userinfo"), result);
+        ModelAndView modelAndView=new ModelAndView("myhome",ModelMapUtil.getUserMap(result)) ;
         return modelAndView;
     }
 
@@ -130,7 +130,7 @@ public class UserController {
         return  new ModelAndView("myhome",ModelMapUtil.getUserMap(user)) ;
     }
     @RequestMapping(value = "autoLogin")
-    public void autoLogin(User user,HttpServletResponse response,HttpSession session){
+    public void autoLogin(User user,HttpServletResponse response,HttpSession session,HttpServletRequest request){
         Map map=new HashMap();
         map.put("msg","success");
         User result=userService.checkLogin(user);
@@ -138,6 +138,9 @@ public class UserController {
         //当数据库中存在此用户
         if(result!=null){
             try {
+                result.setLoginIp(IpUtil.getIpAddr(request));
+                result.setLoginTime(DateUtil.getStrOfDateTime());
+                userService.loginUpdate(result);
                 ResponseUtil.outWriteJsonMessage(response,map);
             } catch (IOException e) {
 

@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div id="mainPanle" region="center" style="overflow: hidden;">
       <div id="tabs" class="easyui-tabs" fit="true" border="false">
           <div title="欢迎使用" style="padding: 20px; overflow: hidden;" id="home">
-              <h1>Welcome to jQuery UI!</h1>
+              <h1>欢迎~</h1>
           </div>
       </div>
   </div>

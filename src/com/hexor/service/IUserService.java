@@ -27,4 +27,6 @@ public interface IUserService {
     public User getUserByUsername(String id);
     public void reducePointsById(String id);
     public void updateUser(User user);
+    public User getUserById(String id);
+    public List<User> getUserByType();
 }

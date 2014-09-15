@@ -39,5 +39,13 @@
       select * from vistlog order by time desc limit #{index},#{data}
     </select>
 
+    <!--查找同一个ip今天访问的次数-->
+    <select id="getIpVistCounts" parameterType="String" resultType="long">
+         select count(*) from vistlog where ip=#{value}
+    </select>
+
+    <delete id="deleteAll">
+         delete  from vistlog
+    </delete>
 
  </mapper>

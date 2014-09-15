@@ -19,6 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
       <script type="text/javascript">
+
           $(function() {
 
           });
@@ -28,13 +29,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <div id="aa" class="easyui-accordion" style="position: absolute; top: 27px; left: 0px; right: 0px; bottom: 0px;">
 
-      <div title="用户管理" iconcls="icon-save" style="overflow: auto; padding: 10px;">
+      <div title="后台管理" iconcls="icon-save" style="overflow: auto; padding: 10px;">
           <ul >
               <li>
-                  <span><a a target="mainFrame" href="${pageContext.request.contextPath}/admin/usermanage">用户管理</a></span>
+                  <span><a target="mainFrame" href="${pageContext.request.contextPath}/admin/usermanage">用户管理</a></span>
               </li>
+
           </ul>
       </div>
+
   </div>
   </body>
 </html>

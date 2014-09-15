@@ -18,5 +18,6 @@ public interface IVistLogService {
     public void insertVistLog(VistLogBean bean);
     public long getVistLogsCount();
     public List<VistLogBean> limit(Pager pager);
-
+    public long getIpVistCounts(String ip);
+    public void deleteAll();
 }

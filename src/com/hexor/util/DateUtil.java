@@ -510,7 +510,7 @@ public class DateUtil {
     /**
      * 获得多少天以后的日期 返回yyyy-MM-dd
      */
-    public String  nDaysAftertoday(int n){
+    public static String  nDaysAftertoday(int n){
         SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
         Calendar rightNow = Calendar.getInstance();
         //rightNow.add(Calendar.DAY_OF_MONTH,-1);
@@ -519,7 +519,6 @@ public class DateUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(getFirstDayOfMonth(2013,2));
-        System.out.println(getLastDayOfMonth(2013,2));
+        System.out.println(nDaysAftertoday(30*3));
     }
 }

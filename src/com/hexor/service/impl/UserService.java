@@ -77,4 +77,14 @@ public class UserService implements IUserService {
         mapper.updateUser(user);
     }
 
+    @Override
+    public User getUserById(String id) {
+        return mapper.getUserById(id);
+    }
+
+    @Override
+    public List<User> getUserByType() {
+        return mapper.getUserByType();
+    }
+
 }
