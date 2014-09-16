@@ -8,13 +8,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
-    <title>My JSP 'index.jsp' starting page</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
+
+      <title>91视频网</title>
+      <meta http-equiv="pragma" content="no-cache">
+      <meta http-equiv="cache-control" content="no-cache">
+      <meta http-equiv="expires" content="0">
+      <meta http-equiv="keywords" content="91视频网">
+      <meta http-equiv="description" content="This is my page">
+      <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -36,9 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
           });
       </script>
-
   </head>
-  
   <body>
       <div id="main_block">
              <div id="innerblock">
@@ -83,84 +82,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="lp_inrplyrpad">
 						<span class="lp_plyrxt" id="infotime"></span>
 						<span class="lp_plyrxt" id="views"></span>
-						<span class="lp_plyrxt" id="comment">评论 :1</span>
-						<span class="lp_plyrxt" style="width:200px;">Rate it :<a href="#"><img src="${pageContext.request.contextPath}/resources/img/lp_featstar.jpg" width="78" height="13" alt=""></a></span>
-						<a href="#" class="lp_plyrlnks">Add to Favourites</a>
-						<a href="#" class="lp_plyrlnks">Write Comments</a>
-						<a href="#" class="lp_plyrlnks">Download Video</a>
-						<a href="#" class="lp_plyrlnks">Share</a>
-						<a href="#" class="lp_inryho"><img src="${pageContext.request.contextPath}/resources/img/lp_inryho.jpg" width="138" height="18" alt=""></a>
 					</span>
-
-
-                         <div class="lp_newvidpad" style="margin-top:10px;">
-                             <span class="lp_newvidit">Comments(2)</span>
-                             <img src="${pageContext.request.contextPath}/resources/img/lp_newline.jpg" width="661" height="2" alt="" class="lp_newline">
-
-                             <img src="${pageContext.request.contextPath}/resources/img/lp_inrfoto.jpg" width="68" height="81" alt="" class="lp_featimg1">
-								
-						<span class="cp_featparas">
-									<span class="cp_ftparinr1">
-										<span class="cp_featname"><b>Posted by: Name(13.01.09) 21:37</b><br>From :non tortor</span>
-										
-										<span class="cp_featxt" style="width:500px;">Mauris congue tellus eget nisi. Cras blandit urna id ante. Aliquam tincidunt laoreet nisl? Proin adipiscing nibh ut dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus ac ante. Fusce facilisis ullamcorper lorem.</span><br>
-									</span>
-									
-						</span><br>
-
-
-                             <img src="${pageContext.request.contextPath}/resources/img/lp_inrfoto.jpg" width="68" height="81" alt="" class="lp_featimg1">
-					
-						<span class="cp_featparas">
-									<span class="cp_ftparinr1">
-										<span class="cp_featname"><b>Posted by: Name(13.01.09) 21:37</b><br>From :non tortor</span>
-										
-										<span class="cp_featxt" style="width:500px;">Mauris congue tellus eget nisi. Cras blandit urna id ante. Aliquam tincidunt laoreet nisl? Proin adipiscing nibh ut dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus ac ante. Fusce facilisis ullamcorper lorem.</span><br>
-									</span>
-									
-						</span>
-
-                         </div>
-
-
-
                      </div>
-
                      <div id="rp_padd">
-
-
-
-                         <img src="${pageContext.request.contextPath}/resources/img/rp_top.jpg" width="282" height="10" alt="" class="rp_upbgtop">
-                         <div class="rp_loginpad" style="padding-bottom:0px; border-bottom:none;">
-                             <span class="rp_titxt">OTHER VIDEOS</span>
-                         </div>
-
-                         <img src="${pageContext.request.contextPath}/resources/img/rp_inrimg1.jpg" width="80" height="64" alt="" class="rp_inrimg1">
-                         <span class="rp_inrimgxt"><span style="font:bold 11px/20px Arial, Helvetica, sans-serif;">Donec pharetra molestie tellus.</span><br>Vivamus facilisis diam. Mauris id <br>quam in accumsan. </span>
-                         <img src="${pageContext.request.contextPath}/resources/img/rp_catline.jpg" width="262" height="1" alt="" class="rp_catline1"><br>
-
-                         <img src="${pageContext.request.contextPath}/resources/img/rp_inrimg2.jpg" width="80" height="64" alt="" class="rp_inrimg1">
-                         <span class="rp_inrimgxt"><span style="font:bold 11px/20px Arial, Helvetica, sans-serif;">Donec pharetra molestie tellus.</span><br>Vivamus facilisis diam. Mauris id <br>quam in accumsan. </span>
-                         <img src="${pageContext.request.contextPath}/resources/img/rp_catline.jpg" width="262" height="1" alt="" class="rp_catline1"><br>
-
-                         <img src="${pageContext.request.contextPath}/resources/img/rp_inrimg3.jpg" width="80" height="64" alt="" class="rp_inrimg1">
-                         <span class="rp_inrimgxt"><span style="font:bold 11px/20px Arial, Helvetica, sans-serif;">Donec pharetra molestie tellus.</span><br>Vivamus facilisis diam. Mauris id <br>quam in accumsan. </span>
-                         <img src="${pageContext.request.contextPath}/resources/img/rp_catline.jpg" width="262" height="1" alt="" class="rp_catline1"><br>
-
-                         <img src="${pageContext.request.contextPath}/resources/img/rp_inrimg4.jpg" width="80" height="64" alt="" class="rp_inrimg1">
-                         <span class="rp_inrimgxt"><span style="font:bold 11px/20px Arial, Helvetica, sans-serif;">Donec pharetra molestie tellus.</span><br>Vivamus facilisis diam. Mauris id <br>quam in accumsan. </span>
-                         <img src="${pageContext.request.contextPath}/resources/img/rp_catline.jpg" width="262" height="1" alt="" class="rp_catline1"><br>
-
-
-                         <img src="${pageContext.request.contextPath}/resources/img/rp_upbgtop.jpg" width="282" height="10" alt="" class="rp_upbgtop">
-                         <div class="rp_uppad">
-
-                             <img src="${pageContext.request.contextPath}/resources/img/lp_inrfoto.jpg" width="68" height="81" alt="" class="lp_inrfoto">
-                             <span class="rp_inrimgxt" style="margin-top:47px; width:120px;"><span style="font:bold 11px/20px Arial, Helvetica, sans-serif;">Name (13.01.09)</span><br>From : non tortot<br></span>
-
-                             <span class="rp_inrimgxt" style="margin-left:20px;"><span style="font:11px/20px Arial, Helvetica, sans-serif;">Donec pharetra molestie tellus.</span><br>Vivamus facilisis diam. Mauris id</span>
-
-                         </div>
                      </div>
                  </div>
                  <jsp:include page="bottom.jsp"></jsp:include>

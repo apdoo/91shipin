@@ -33,5 +33,6 @@ public interface IUserMapper {
     public void reducePointsById(String id);
     public void updateUser(User user);
     public List<User> getUserByType();
+    public void resetPoints();
 
 }

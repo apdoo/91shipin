@@ -46,19 +46,19 @@
     </select>
     <!--根据发布时间查找最新的5条视频信息-->
      <select id="selectRecently" resultMap="vedioResultMap">
-         select * from vedio order by updatetime desc limit 5
+      select * from vedio  group by videoid order by updatetime desc limit 5
      </select>
     <!--根据赞数查找获得赞最高的5条视频信息-->
     <select id="selectRate" resultMap="vedioResultMap">
-         select * from vedio order by rate desc limit 5
+   select * from vedio  group by videoid order by rate desc limit 5
      </select>
     <!--根据收藏数查找获得赞最高的5条视频信息-->
     <select id="selectFav" resultMap="vedioResultMap">
-         select * from vedio order by favourite desc limit 5
+      select * from vedio  group by videoid order by favourite desc limit 5
      </select>
     <!--根据观看数查找获得赞最高的5条视频信息-->
     <select id="selectViews" resultMap="vedioResultMap">
-         select * from vedio order by views desc limit 5
+        select * from vedio  group by videoid order by views desc limit 5
      </select>
     <!--随机5条视频信息-->
     <select id="selectRand" resultMap="vedioResultMap">

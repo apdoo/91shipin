@@ -72,6 +72,11 @@ public class VideoController {
             Map map=new HashMap();
             map.put("root",root);
             map.put("video",video);
+        //视频点击次数增加
+         Map vmap=new HashMap();
+        vmap.put("views","views");
+        vmap.put("videoId",videoId);
+        videoService.videoAddSelf(vmap);
             return new ModelAndView("videoplay",map);
     }
     /**

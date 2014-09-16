@@ -34,7 +34,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <li>
                   <span><a target="mainFrame" href="${pageContext.request.contextPath}/admin/usermanage">用户管理</a></span>
               </li>
-
+              <%--<li>--%>
+                  <%--<span><a target="mainFrame" href="${pageContext.request.contextPath}/admin/bbsmanage">论坛管理</a></span>--%>
+              <%--</li>--%>
           </ul>
       </div>
 

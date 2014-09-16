@@ -29,4 +29,5 @@ public interface IUserService {
     public void updateUser(User user);
     public User getUserById(String id);
     public List<User> getUserByType();
+    public void resetPoints();
 }

@@ -101,7 +101,7 @@ float:left;
 margin:8px 0 0 10px;
  }
 .tp_welcum{ 
-float:left; margin:14px 0 0 80px; 
+float:left; margin:14px 0 0 800px;/*原样式 magin 14px 0 0 80px*/
 font:11px Arial, Helvetica, sans-serif; 
 color:#2E3131; width:95px;
 }

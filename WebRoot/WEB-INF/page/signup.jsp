@@ -15,6 +15,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+      <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
+
       <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
@@ -68,9 +70,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                      <p>成为会员以后:</p>
 
-                     <ul><li>您每天可以免费观看<strong>20</strong>部视频 </li><li><strong>Share favorites</strong> with friends and family</li>
-                         <li><strong>Connect with other users</strong> who share your interests</li><li><strong>Upload your videos</strong> to a worldwide audience
-                         </li></ul>
+                     <ul><li>您每天观看<strong>更多</strong>的视频 </li><li><strong>分享上传</strong> 视频</li>
+                         <li><strong>使用网站的论坛系统</strong></li>
+                          </ul>
 
                  </div>
                  <div class="signup_right">
@@ -86,12 +88,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                          <input type="text" name="username" id="newusername">
                          <div class="hint">用户名以字母开头，可以包含数字、下划线，长度不小于5位</div>
                      </div>
-
-                     <div class="clearfix"></div>
-                     <label for="email" class="label">email:</label>
-                     <div class="input_container">
-                         <input type="text" name="email" id="email">
-                     </div>
                      <div class="clearfix"></div>
                      <label for="newpassword" class="label">密码:</label>
                      <div class="input_container">
@@ -102,6 +98,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      <label for="cpassword" class="label">确认密码:</label>
                      <div class="input_container">
                          <input type="password" name="cpassword" id="cpassword">
+                     </div>
+                     <div class="clearfix"></div>
+                     <label for="email" class="label">email:</label>
+                     <div class="input_container">
+                         <input type="text" name="email" id="email">
                      </div>
                      <div class="clearfix"></div>
                      <label class="label" for="verification_code">验证码:</label>

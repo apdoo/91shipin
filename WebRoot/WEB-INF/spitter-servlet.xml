@@ -87,6 +87,13 @@
             </bean>
         </mvc:interceptor>
 
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/home*"/>
+            <mvc:mapping path="/admin/usermanage*"/>
+                <bean class="com.hexor.interceptor.AdminInterceptor">
+                </bean>
+        </mvc:interceptor>
+
         <!--=======-->
     </mvc:interceptors>
 </beans>

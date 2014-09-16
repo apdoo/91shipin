@@ -87,4 +87,9 @@ public class UserService implements IUserService {
         return mapper.getUserByType();
     }
 
+    @Override
+    public void resetPoints() {
+        mapper.resetPoints();
+    }
+
 }

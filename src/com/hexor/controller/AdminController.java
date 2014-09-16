@@ -3,9 +3,7 @@ package com.hexor.controller;
 import com.hexor.repo.Pager;
 import com.hexor.repo.User;
 import com.hexor.service.impl.UserService;
-import com.hexor.util.DateUtil;
-import com.hexor.util.PagerUtil;
-import com.hexor.util.ResponseUtil;
+import com.hexor.util.*;
 import net.sf.json.JSONObject;
 import net.sf.json.util.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +41,16 @@ public class AdminController {
         this.userService = userService;
     }
 
+    /**
+     * 返回登录页面
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="login")
+    public ModelAndView login(HttpSession session, ModelMap model){
+        return new ModelAndView("admin/login");
+    }
 
     /**
      * 返回我的主页
@@ -74,6 +82,30 @@ public class AdminController {
     @RequestMapping(value="bbsmanage")
     public ModelAndView bbsmanage(HttpSession session, ModelMap model){
         return new ModelAndView("admin/bbsmanage");
+    }
+
+    /**
+     * 管理员登录
+     * @param session
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="doLogin")
+    public ModelAndView doLogin(User user,HttpSession session, ModelMap model){
+        User result=userService.checkLogin(user);
+        //当数据库检验用户名密码
+        if(result==null){
+            Map map= ModelMapUtil.getMsg("wrong account or password");
+            return new ModelAndView("admin/login",map);
+        }
+        if(result.getType()!=5){
+            Map map= ModelMapUtil.getMsg("this account not admin account");
+            return new ModelAndView("admin/login",map);
+        }
+        //设置session
+        session.setAttribute((String) Configurer.getContextProperty("session.admin"), result);
+
+        return new ModelAndView("admin/home");
     }
     /**
      * 根据用户id或者用户名查询用户信息

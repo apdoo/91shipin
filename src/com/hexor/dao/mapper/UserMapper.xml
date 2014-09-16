@@ -99,4 +99,8 @@
     <select id="getUserByType" resultMap="userResultMap">
         select * from user where type='1' or type='2' or type='3'
     </select>
+    <!--将普通会员小于100积分的重置更新为100积分-->
+    <update id=" " >
+        update user set points=100 where type=0 and points &lt;100;
+    </update>
  </mapper>

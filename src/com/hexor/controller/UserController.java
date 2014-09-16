@@ -66,7 +66,14 @@ public class UserController {
      */
     @RequestMapping(value="myhome")
     public ModelAndView myhome(HttpSession session, ModelMap model){
-        return new ModelAndView("myhome");
+        User user= (User) session.getAttribute((String) Configurer.getContextProperty("session.userinfo"));
+        if(user==null){
+            return new ModelAndView("signup");
+        }else{
+            User result=userService.checkUser(user.getUsername());
+            return new ModelAndView("myhome",ModelMapUtil.getUserMap(result));
+        }
+
     }
     /**
      * 登录接口
@@ -126,15 +133,34 @@ public class UserController {
         }
         //验证成功，加入用户信息岛session与插入到数据库
         session.setAttribute((String) Configurer.getContextProperty("session.userinfo"), user);
+       //当读取配置文件，开放优惠活动，即注册就送包月会员资格
+        String free=(String) Configurer.getContextProperty("user.free");
+        if("yes".equals(free)){
+            user.setType(1);
+            user.setTemp(DateUtil.nDaysAftertoday(30));
+        }
         userService.insertUser(user);
         return  new ModelAndView("myhome",ModelMapUtil.getUserMap(user)) ;
     }
+
+    /**
+     * 自动登录
+     * @param user
+     * @param response
+     * @param session
+     * @param request
+     */
     @RequestMapping(value = "autoLogin")
     public void autoLogin(User user,HttpServletResponse response,HttpSession session,HttpServletRequest request){
         Map map=new HashMap();
         map.put("msg","success");
+        User suser= (User) session.getAttribute((String) Configurer.getContextProperty("session.userinfo"));
+        if(suser!=null){
+            //已经登录了 则直接返回
+            return ;
+        }
         User result=userService.checkLogin(user);
-        session.setAttribute((String) Configurer.getContextProperty("session.userinfo"), user);
+        session.setAttribute((String) Configurer.getContextProperty("session.userinfo"), result);
         //当数据库中存在此用户
         if(result!=null){
             try {

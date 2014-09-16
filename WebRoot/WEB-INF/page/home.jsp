@@ -8,16 +8,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
-    <title>My JSP 'index.jsp' starting page</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+
+      <title>91视频网</title>
+      <meta http-equiv="pragma" content="no-cache">
+      <meta http-equiv="cache-control" content="no-cache">
+      <meta http-equiv="expires" content="0">
+      <meta http-equiv="keywords" content="91视频网">
+      <meta http-equiv="description" content="This is my page">
+      <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
+
+      <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico">
+      <!--
+      <link rel="stylesheet" type="text/css" href="styles.css">
+      -->
    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
    <script type="text/javascript">
        var root="${pageContext.request.contextPath}";//根路径
@@ -141,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                          <div class="lp_featnav">
                              <a href="javascript:void(0)" id="recently">*最新 视频*</a>
                              <a href="javascript:void(0)" id="views">*观看 最多*</a>
-                             <a href="#">*讨论 最多*</a>
+                             <a href="javascript:void(0)">*讨论 最多*</a>
                              <a href="javascript:void(0)" id="fav">*收藏 最多*</a>
                              <a href="javascript:void(0)" id="rate">*获赞 最多*</a>
                              <a href="javascript:void(0)" id="rand">*随机的一组*</a>

@@ -35,7 +35,7 @@ public class QtimeImp implements QtimeInterface{
     @Scheduled(cron="0 0 12 * * ? ")   //0 0 12 * * ? 每日12点
     public void test() {
 		 logger.warn("logger当前定时器执行时间:"+DateUtil.getStrOfDateTime());
-          //在此进行user表的会员过期和访问记录表的清空
+          //访问记录表的清空
          service.deleteAll();
          int today=Integer.parseInt(DateUtil.getDateFolder());
          //查找所有包月包年包季度的会员是否过期
@@ -59,6 +59,8 @@ public class QtimeImp implements QtimeInterface{
              }
              userService.updateUser(user);
          }
+        //将普通会员且积分<100的会员账号积分恢复为100
+        userService.resetPoints();
 	}
 
 }

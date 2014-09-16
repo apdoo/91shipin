@@ -2,12 +2,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>91shipin</title>
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="91shipin">
-<meta http-equiv="description" content="91shipin">
+    <title>91视频网</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="91视频网">
+    <meta http-equiv="description" content="This is my page">
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -55,9 +55,11 @@
     </div>
 
     <div class="tp_barbg">
-        <input name="#" type="text" class="tp_barip">
-        <select name="#" class="tp_drp"><option>视频</option></select>
-        <a href="#" class="tp_search"><img src="${pageContext.request.contextPath}/resources/img/tp_search.jpg" width="52" height="24" alt=""></a>
+        <%--<input name="#" type="text" class="tp_barip">--%>
+        <%--<select name="#" class="tp_drp"><option>视频</option></select>--%>
+        <%--<a href="#" class="tp_search"><img src="${pageContext.request.contextPath}/resources/img/tp_search.jpg" width="52" height="24" alt=""></a>--%>
+        <%----%>
+            <!--修改了样式tp_welcum-->
         <span class="tp_welcum">欢迎 <a href="${pageContext.request.contextPath}/user/myhome"> <b id="my">${userinfo.username}</b></a></span>
 
     </div>
