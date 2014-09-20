@@ -519,6 +519,6 @@ public class DateUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(nDaysAftertoday(30*3));
+        System.out.println(getStrOfDateTime());
     }
 }

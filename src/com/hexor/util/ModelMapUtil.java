@@ -16,6 +16,7 @@ public class ModelMapUtil {
 
     public static Map getMsg(String msg){
            Map map=new HashMap();
+           msg= EncodingTool.encodeStr(msg,"GBK");
            map.put("msg",msg) ;
            return map;
     }

@@ -29,6 +29,7 @@ CREATE TABLE vedio(
 --帖子表    MySQL 中的 VARCHAR(255) 可以存放 1 - 255 个 UTF-8 格式的汉字 ...
 CREATE TABLE post(
   id int NOT NULL AUTO_INCREMENT primary key,
+   theme  varchar (10),
   type int,
   username varchar(20),
   time varchar(30),
@@ -55,6 +56,15 @@ CREATE TABLE post(
     time varchar(30)
  )default charset=utf8;
 --播放记录表
+--用户评论表
+--友情链接表
+ CREATE TABLE friendlink(
+    id int NOT NULL AUTO_INCREMENT primary key,
+    linkname varchar(20),
+    linkurl varchar(100),
+    linkcomment varchar(100),
+    time varchar(30)
+ )default charset=utf8;
 
 
 

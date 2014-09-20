@@ -10,6 +10,7 @@ package com.hexor.repo;
  */
 public class PostBean {
     private int id;  //帖子主键
+    private String theme;//主题分类
     private int type;//0属于管理员发布的公告，1属于加精的帖子，2属于用户发布的普通帖子
     private String username;//发布公告的作者用户
     private String time;//发布公告的时间
@@ -23,22 +24,7 @@ public class PostBean {
     private String reTime;//帖子最后回复时间
     private String reUser;//帖子最后回复的用户名
 
-    @Override
-    public String toString() {
-        return "PostBean{" +
-                "id=" + id +
-                ", type=" + type +
-                ", username='" + username + '\'' +
-                ", time='" + time + '\'' +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", postindex=" + postindex +
-                ", status=" + status +
-                ", reNum=" + reNum +
-                ", reTime='" + reTime + '\'' +
-                ", reUser='" + reUser + '\'' +
-                '}';
-    }
+
 
     public int getId() {
         return id;
@@ -46,6 +32,14 @@ public class PostBean {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 
     public int getType() {

@@ -84,8 +84,10 @@ public class UserController {
         User result=userService.checkLogin(user);
         //当数据库检验用户名密码
         if(result==null){
-            Map map=ModelMapUtil.getMsg("用户名或密码错误!");
-            return new ModelAndView("messagetip",map);
+            ModelAndView modelAndView=new ModelAndView();
+            modelAndView.setViewName("messagetip");
+            modelAndView.addObject("msg", EncodingTool.encodeStr("用户名或密码错误", "GBK"));
+            return modelAndView;
         }
         //登录成功
         try{
