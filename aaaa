@@ -1,0 +1,61 @@
+.wp {
+margin: 0 auto;
+width: 960px;
+}
+
+#pt {
+margin: 2px 0;
+height: 29px;
+border: none;
+background: transparent;
+line-height: 29px;
+}
+.bm {
+border: 1px solid #CDCDCD;
+background: #FFF;
+}
+.cl {
+zoom: 1;
+}
+body, input, button, select, textarea {
+font: 12px/1.5 Tahoma,'Microsoft Yahei','Simsun';
+color: #444;
+}
+
+.bmw .bm_h a {
+color: #369;
+}
+a:hover {
+text-decoration: underline;
+}
+a {
+color: #333;
+text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+font-size: 1em;
+}
+.fl .bm_c, #online .bm_c, .lk .bm_c {
+padding-top: 0;
+padding-bottom: 0;
+}
+.fl_tb {
+width: 100%;
+}
+table {
+empty-cells: show;
+border-collapse: collapse;
+}
+.fl_g {
+vertical-align: top;
+}
+.bm_h {
+padding: 0 10px;
+height: 31px;
+border-top: 1px solid #FFF;
+border-bottom: 1px solid #C2D5E3;
+background: #F2F2F2;
+line-height: 31px;
+white-space: nowrap;
+overflow: hidden;
+}
