@@ -80,7 +80,7 @@ public class BbsController {
         modelMap.put("pager",p);
         //json格式数组
         modelMap.put("list", result);
-        return  new ModelAndView("bbshome",modelMap);
+        return  new ModelAndView("bbs/bbshome",modelMap);
     }
     /**
      * 设置查看帖子详细页面

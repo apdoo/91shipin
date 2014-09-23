@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div id="main_block">
              <div id="innerblock">
                  <!--网站头-->
-                 <jsp:include page="header.jsp"></jsp:include>
+                 <jsp:include page="../header.jsp"></jsp:include>
                  <!--内容-->
                  <h3 align="center" style="color: rgb(248, 143, 5)">即将上线，敬请期待！</h3>
                  <div id="box">
@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    </div>
                  <div class="navigation page-navigation" style="margin: auto;"
                       id="pagenumber"></div>
-                 <jsp:include page="bottom.jsp"></jsp:include>
+                 <jsp:include page="../bottom.jsp"></jsp:include>
                  <!--网站尾部-->
 
              </div>
