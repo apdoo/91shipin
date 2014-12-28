@@ -12,6 +12,7 @@
 		  flag,
 		  rate,
 		  views,
+		  type,
 		  favourite
 	 </sql>
  
@@ -26,6 +27,7 @@
         <result property="rate" column="rate"/>
         <result property="views" column="views"/>
         <result property="favourite" column="favourite"/>
+        <result property="type" column="type"/>
     </resultMap>
     
     

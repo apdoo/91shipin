@@ -20,6 +20,7 @@ public class VideoBean {
     private int rate=0;//视频被赞数
     private int views=0;//视频被观看数
     private int favourite=0;//视频被收藏次数
+    private String type="";
 
     @Override
     public String toString() {
@@ -34,7 +35,16 @@ public class VideoBean {
                 ", rate=" + rate +
                 ", views=" + views +
                 ", favourite=" + favourite +
+                ", type=" + type +
                 '}';
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getRate() {
