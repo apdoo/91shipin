@@ -40,8 +40,9 @@
     <div class="tp_navbg">
         <a href="${pageContext.request.contextPath}/home">首页</a>
         <%--<a href="#">Upload</a>--%>
-        <a href="${pageContext.request.contextPath}/video/videoslist">视频列表</a>
+        <a href="${pageContext.request.contextPath}/video/videoslist">旧版视频列表</a>
         <a href="${pageContext.request.contextPath}/public/home">公告栏</a>
+        <a href="${pageContext.request.contextPath}/public/home">新版视频入口</a>
         <a href="${pageContext.request.contextPath}/bbs/home">论坛</a>
         <p style="color: #E0FF00">会员1群:150543383</p>
     </div>

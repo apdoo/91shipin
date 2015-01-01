@@ -12,8 +12,8 @@
 		  flag,
 		  rate,
 		  views,
-		  type,
-		  favourite
+		  favourite,
+		  type
 	 </sql>
  
     <resultMap type="com.hexor.repo.VideoBean" id="vedioResultMap">  
@@ -32,7 +32,7 @@
     
     
     
-    <!-- 查找总条数 -->
+    <!-- 查找总条数 .针对本地化的视频-->
      <select id="getVideosCount"   resultType="long">
             select count(*) from vedio
     </select>
