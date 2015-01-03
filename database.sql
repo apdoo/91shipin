@@ -1,3 +1,11 @@
+--代理列表
+CREATE TABLE proxy(
+	ip varchar(20),
+    port int,
+	type varchar(6),
+	updatetime varchar(20)
+);
+
 --用户表     添加用户表id主键自增           //temp 用来存sessionid
 CREATE TABLE user(
   id int NOT NULL AUTO_INCREMENT primary key,
@@ -23,7 +31,8 @@ CREATE TABLE vedio(
 	 flag int,
 	 rate int,
 	 views int,
-	 favourite int
+	 favourite int,
+	 type varchar(10)
 )default charset=utf8;
 
 --帖子表    MySQL 中的 VARCHAR(255) 可以存放 1 - 255 个 UTF-8 格式的汉字 ...

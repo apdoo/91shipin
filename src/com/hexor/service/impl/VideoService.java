@@ -33,7 +33,6 @@ public class VideoService implements IVideoService {
     @Override
     public List<VideoBean> limit(Pager pager) {
         List<VideoBean> list= mapper.limit(pager);  //To change body of implemented methods use File | Settings | File Templates.
-
         return encodeVideoId(list);
     }
 
@@ -44,8 +43,8 @@ public class VideoService implements IVideoService {
     }
 
     @Override
-    public VideoBean selectByVideoId(String vid) {
-        return mapper.selectByVideoId(vid);
+    public VideoBean selectByVideoId(Map map) {
+        return mapper.selectByVideoId(map);
     }
 
     @Override
@@ -84,15 +83,18 @@ public class VideoService implements IVideoService {
         mapper.videoAddSelf(map);
     }
 
+
+
     public List<VideoBean> encodeVideoId(List<VideoBean> list){
         //在此加密视频路径
-        for(VideoBean bean:list){
-            try {
-                bean.setVideoId(EncodeUtil.encodeString(bean.getVideoId()));
-            } catch (IOException e) {
-                System.out.println("加密失败");
-            }
-        }
+        //不加密了
+//        for(VideoBean bean:list){
+//            try {
+//                bean.setVideoId(EncodeUtil.encodeString(bean.getVideoId()));
+//            } catch (IOException e) {
+//                System.out.println("加密失败");
+//            }
+//        }
         return list;
     }
 }

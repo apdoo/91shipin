@@ -31,7 +31,6 @@ public class QtimeImp implements QtimeInterface{
         this.service = service;
     }
 
-
     @Scheduled(cron="0 0 12 * * ? ")   //0 0 12 * * ? 每日12点
     public void test() {
 		 logger.warn("logger当前定时器执行时间:"+DateUtil.getStrOfDateTime());

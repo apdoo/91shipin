@@ -14,6 +14,14 @@ public class Pager {
     //若limit 2,1 则表示查询数据库第三条开始的总共一条数据
     private int pageCount;//显示的总页数
     private int currentPage=1;//当前请求的页数
+    private String type=null; //视频类型
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public int getCurrentPage() {
         return currentPage;

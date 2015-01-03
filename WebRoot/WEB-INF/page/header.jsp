@@ -36,13 +36,13 @@
 </head>
 <!-- 头部 -->
 <div id="top_panel">
-     <a href="index.html" class="logo"><img src="${pageContext.request.contextPath}/resources/img/logo.jpg" width="255" height="36" alt=""></a><br>
+     <a href="/home" class="logo"><img src="${pageContext.request.contextPath}/resources/img/logo.jpg" width="255" height="36" alt=""></a><br>
     <div class="tp_navbg">
         <a href="${pageContext.request.contextPath}/home">首页</a>
         <%--<a href="#">Upload</a>--%>
-        <a href="${pageContext.request.contextPath}/video/videoslist">旧版视频列表</a>
+        <a href="${pageContext.request.contextPath}/video/videoslist">视频列表</a>
+        <%--<a href="${pageContext.request.contextPath}/videoNew/videoslist">新版视频入口</a>--%>
         <a href="${pageContext.request.contextPath}/public/home">公告栏</a>
-        <a href="${pageContext.request.contextPath}/public/home">新版视频入口</a>
         <a href="${pageContext.request.contextPath}/bbs/home">论坛</a>
         <p style="color: #E0FF00">会员1群:150543383</p>
     </div>

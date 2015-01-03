@@ -30,21 +30,17 @@
         <result property="type" column="type"/>
     </resultMap>
     
-    
-    
     <!-- 查找总条数 .针对本地化的视频-->
      <select id="getVideosCount"   resultType="long">
             select count(*) from vedio
     </select>
-    
-    <!-- 针对mysql的分页 limit函数 -->
+    <!-- 针对mysql的分页 limit函数,针对本地化的视频 -->
     <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="vedioResultMap">
-			select * from vedio order by updatetime desc limit #{index},#{data}
+			select * from vedio   order by updatetime desc limit #{index},#{data}
     </select>
-
     <!--根据视频id查找视频信息-->
-    <select id="selectByVideoId" parameterType="String" resultType="com.hexor.repo.VideoBean">
-          select * from vedio where videoId=#{value} limit 1
+    <select id="selectByVideoId" parameterType="Map" resultType="com.hexor.repo.VideoBean">
+          select * from vedio where videoId=#{vid} and type=#{type} limit 1
     </select>
     <!--根据发布时间查找最新的5条视频信息-->
      <select id="selectRecently" resultMap="vedioResultMap">
@@ -83,5 +79,7 @@
         </set>
         where videoId=#{videoId}
     </update>
+
+
 
  </mapper>

@@ -104,7 +104,8 @@ public class VideoPlayInterceptor implements HandlerInterceptor {
        }//当时游客的时候，只能看三次
        else{
            long count=service.getIpVistCounts(ip);
-           int vistlimit=Integer.parseInt((String) Configurer.getContextProperty("user.vistcount"));
+//           int vistlimit=Integer.parseInt((String) Configurer.getContextProperty("user.vistcount"));
+           int vistlimit=3;
 
            if(count>vistlimit){
                System.out.println("ccccount"+count);

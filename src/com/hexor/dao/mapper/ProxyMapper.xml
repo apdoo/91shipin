@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.hexor.dao.IProxyMapper">
+   <sql id="columnProxy">
+        ip,
+        prot,
+        type,
+        updatetime
+
+   </sql>
+ 
+    <resultMap type="com.hexor.repo.ProxyBean" id="ProxyResultMap">
+        <result property="ip" column="ip"/>
+        <result property="prot" column="prot"/>
+        <result property="type" column="type"/>
+        <result property="updatetime" column="updatetime"/>
+
+    </resultMap>
+    
+     <select id="getOneProxy"   resultMap="ProxyResultMap">
+       select *, rand() as random from proxy order by random limit 1
+    </select>
+
+    <delete id="deleteProxy" parameterType="String">
+        delete from proxy where ip=#{value}
+    </delete>
+ </mapper>

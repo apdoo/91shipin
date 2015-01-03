@@ -41,6 +41,12 @@ public class VideoController {
         this.videoService = videoService;
     }
 
+    @Autowired
+    @Qualifier("com.com.hexor.util.ProxyParsePlayResource")
+    private ProxyParsePlayResource parsePlayResource = null;
+    public void setParsePlayResource(ProxyParsePlayResource parsePlayResource) {
+        this.parsePlayResource = parsePlayResource;
+    }
     /**
      * 拿去视频
      * @param vid
@@ -49,35 +55,59 @@ public class VideoController {
      * @return
      */
     @RequestMapping(value="videoplay")
-    public ModelAndView videoplay(@RequestParam("vid")String vid,HttpSession session, ModelMap model){
-        String videoId= "";
-        try {
-            videoId = EncodeUtil.decodeString(vid);
-        } catch (IOException e) {
-            return new ModelAndView("messagetip", ModelMapUtil.getMsg("抱歉，获取视频页面出错！"));
-        }
-        System.out.println("want video:"+videoId);
-           if(!videoId.endsWith(".mp4")){
-               //解析视频id错误的时候
-               return new ModelAndView("messagetip", ModelMapUtil.getMsg("抱歉，获取视频页面出错！"));
-           }
-           VideoBean video=videoService.selectByVideoId(videoId);
-            if(video==null){
-                System.out.println("bbbbbbbb");
+    public ModelAndView videoplay(@RequestParam("vid")String vid,@RequestParam("type")String type,HttpSession session, ModelMap model){
+//        try {
+//            //解密
+//            videoId = EncodeUtil.decodeString(vid);
+//        } catch (IOException e) {
+//            return new ModelAndView("messagetip", ModelMapUtil.getMsg("抱歉，获取视频页面出错！"));
+//        }
+//        System.out.println("want video:"+videoId);
+//           if(!videoId.endsWith(".mp4")){
+//               //解析视频id错误的时候
+//               return new ModelAndView("messagetip", ModelMapUtil.getMsg("抱歉，获取视频页面出错！"));
+//           }
+        System.out.println("vvv"+vid+"ttt"+type);
+        Map get=new HashMap();
+        get.put("vid",vid);
+        get.put("type",type);
+       VideoBean video=videoService.selectByVideoId(get);
+
+       if(video==null){
                 return new ModelAndView("messagetip", ModelMapUtil.getMsg("抱歉，获取视频页面出错！"));
             }
-        //84812.mp4  84897.mp4
-            System.out.println(video.toString());
-            String root=(String) Configurer.getContextProperty("video.root");
-            Map map=new HashMap();
-            map.put("root",root);
-            map.put("video",video);
+     System.out.println(video.toString());
+//        String root=(String) Configurer.getContextProperty("video.root");
         //视频点击次数增加
-         Map vmap=new HashMap();
+        //根据video类型和videoId解析出播放地址
+        String play="";
+        if("91pron".equals(video.getType())){
+            try {
+                play=   parsePlayResource.parse91pron(UrlUtil.PRONPRE+video.getVideoId()+UrlUtil.PRONAFT);
+            } catch (Exception e) {
+                return new ModelAndView("messagetip", ModelMapUtil.getMsg("抱歉，获取视频页面出错！"));
+            }
+        }else if("caopron".equals(video.getType())){
+            try {
+                play=   parsePlayResource.parseCaopron(UrlUtil.CAOPRE+video.getVideoId());
+            } catch (Exception e) {
+                return new ModelAndView("messagetip", ModelMapUtil.getMsg("抱歉，获取视频页面出错！"));
+            }
+        }
+        System.out.println("pplay+"+play);
+        if(play.contains("error")){
+            return new ModelAndView("messagetip", ModelMapUtil.getMsg("抱歉，获取视频页面出错！"));
+        }
+        video.setVideoId(play);
+        Map map=new HashMap();
+//        map.put("root",root);
+        map.put("video",video);
+        Map vmap=new HashMap();
         vmap.put("views","views");
-        vmap.put("videoId",videoId);
+        vmap.put("videoId",vid);
         videoService.videoAddSelf(vmap);
-            return new ModelAndView("videoplay",map);
+
+        return new ModelAndView("videoplay",map);
     }
     /**
      * 首页获取5部视频列表通用方法
@@ -182,10 +212,10 @@ public class VideoController {
     public void videoSelf(@RequestParam(value = "type",required = true,defaultValue = "-1") String type,@RequestParam("vid")String vid,HttpServletResponse response){
          Map map=new HashMap();
         String videoId= "";
-        try {
-            videoId = EncodeUtil.decodeString(vid);
-        } catch (IOException e) {
-        }
+//        try {
+//            videoId = EncodeUtil.decodeString(vid);
+//        } catch (IOException e) {
+//        }
          map.put("videoId",videoId);
          map.put(type,type);
          videoService.videoAddSelf(map);
