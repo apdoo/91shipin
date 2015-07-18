@@ -3,7 +3,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.hexor.dao.IUserMapper">
    <sql id="columnUser">
-		  ID,
 		  username,
 		  password,
 		  email,
@@ -33,14 +32,15 @@
     </select>
 
     <select id="checkUser"   parameterType="String" resultType="com.hexor.repo.User">
-            select 
-            	<include refid="columnUser"/>  
-           	from user where username=#{value}
+            select * from user where username=#{value}
     </select>
-    
+
+    <select id="checkLogin"   parameterType="com.hexor.repo.User" resultType="com.hexor.repo.User">
+            select * from user where username=#{username} and password=#{password}
+    </select>
+
     <insert id="insertUser"  parameterType="com.hexor.repo.User" >
-    		insert into user(<include refid="columnUser" />) values(
-            	#{id},
+        insert into user(<include refid="columnUser" />) values(
             	#{username},
             	#{password},
             	#{email},
@@ -50,7 +50,6 @@
             	#{loginIp},
             	#{loginTime},
             	#{temp}
-
             	)
     </insert>
     
@@ -63,5 +62,45 @@
     <select id="limit" parameterType="com.hexor.repo.Pager" resultMap="userResultMap">
 			select * from user order by id desc limit #{index},#{data}  
     </select>
-    
+    <!--登录更新用户信息-->
+    <update id="loginUpdate" parameterType="com.hexor.repo.User">
+              UPDATE user SET loginIp=#{loginIp}, loginTime=#{loginTime} where id=#{id}
+    </update>
+    <!--根据用户名查找用户-->
+    <select id="getUserByUsername" parameterType="String" resultType="com.hexor.repo.User">
+          select * from user where username=#{value}
+    </select>
+    <!--根据id查找用户-->
+    <select id="getUserById" parameterType="String" resultType="com.hexor.repo.User">
+          select * from user where id=#{value}
+    </select>
+    <!--根据id查找用户并且扣除用户积分-10-->
+    <update id="reducePointsById" parameterType="String">
+        update user set points=points-10 where id=#{value} ;
+    </update>
+    <!--更改用户信息-->
+    <update id="updateUser" parameterType="com.hexor.repo.User">
+        update user
+         <set>
+             <if test="points!=null">
+                 points=#{points},
+             </if>
+             <if test="type!=null">
+                 type=#{type},
+             </if>
+             <if test="temp!=null">
+                 temp=#{temp}
+             </if>
+         </set>
+        where id=#{id}
+    </update>
+
+    <!--查找所有包月、季度、年的会员-->
+    <select id="getUserByType" resultMap="userResultMap">
+        select * from user where type='1' or type='2' or type='3'
+    </select>
+    <!--将普通会员小于100积分的重置更新为100积分-->
+    <update id="resetPoints" >
+        update user set points=100 where type=0 and points &lt;100;
+    </update>
  </mapper>

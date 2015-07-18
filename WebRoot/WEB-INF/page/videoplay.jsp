@@ -34,7 +34,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                $("#infotime").html(infotime);
                $("#views").html("观看次数:"+views);
                 //http://techslides.com/demos/sample-videos/small.mp4
-
           });
       </script>
   </head>
@@ -46,6 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <!--内容-->
                  <div id="contentpanel">
                      <div id="lp_padd">
+                        <!--视频播放-->
                          <div class="videoContainer">
                              <video id="myVideo" controls="" preload="auto"  width="593" height="389" >
                                  <source  src="${video.videoId}"  type="video/mp4">

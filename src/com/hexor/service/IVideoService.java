@@ -19,7 +19,7 @@ public interface IVideoService {
     //查询总条数
     public long getVideosCount();
     //获得视频信息
-    public VideoBean selectByVideoId(Map map);
+    public VideoBean selectByVideoId(String vid);
     public List<VideoBean> selectRecently();
     public List<VideoBean> selectRate();
     public List<VideoBean> selectFav();

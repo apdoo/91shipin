@@ -114,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      </div>
                      <div class="clearfix"></div>
                      <div class="clear"></div>
-                     <label for="" class="label">&nbsp;</label>
+                     <label for="reg" class="label">&nbsp;</label>
                      <div class="gform_footer top_label">
                          <input type="button" id="reg" class="button green" value="注 册"
                                 tabindex="5">

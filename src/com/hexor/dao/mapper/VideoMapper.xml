@@ -39,8 +39,8 @@
 			select * from vedio   order by updatetime desc limit #{index},#{data}
     </select>
     <!--根据视频id查找视频信息-->
-    <select id="selectByVideoId" parameterType="Map" resultType="com.hexor.repo.VideoBean">
-          select * from vedio where videoId=#{vid} and type=#{type} limit 1
+    <select id="selectByVideoId" parameterType="String" resultType="com.hexor.repo.VideoBean">
+          select * from vedio where videoId=#{value}  limit 1
     </select>
     <!--根据发布时间查找最新的5条视频信息-->
      <select id="selectRecently" resultMap="vedioResultMap">

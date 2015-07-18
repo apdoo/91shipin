@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       {text:'添加',iconCls:'icon-add',handler:add},
                       {text:'编辑',iconCls:'icon-edit',handler:update}
                   ],
-                  pagination:true//分页控件 
+                  pagination:true//分页控件?
 
               });
               var p = $('#tt').datagrid('getPager');

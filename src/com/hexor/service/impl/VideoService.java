@@ -43,8 +43,8 @@ public class VideoService implements IVideoService {
     }
 
     @Override
-    public VideoBean selectByVideoId(Map map) {
-        return mapper.selectByVideoId(map);
+    public VideoBean selectByVideoId(String vid) {
+        return mapper.selectByVideoId(vid);
     }
 
     @Override
@@ -87,14 +87,13 @@ public class VideoService implements IVideoService {
 
     public List<VideoBean> encodeVideoId(List<VideoBean> list){
         //在此加密视频路径
-        //不加密了
-//        for(VideoBean bean:list){
-//            try {
-//                bean.setVideoId(EncodeUtil.encodeString(bean.getVideoId()));
-//            } catch (IOException e) {
-//                System.out.println("加密失败");
-//            }
-//        }
+        for(VideoBean bean:list){
+            try {
+                bean.setVideoId(EncodeUtil.encodeString(bean.getVideoId()));
+            } catch (IOException e) {
+                System.out.println("加密失败");
+            }
+        }
         return list;
     }
 }

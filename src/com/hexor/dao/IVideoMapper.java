@@ -15,7 +15,7 @@ public interface IVideoMapper {
 	//��ѯ������
 	public long getVideosCount();
     //���id��ѯ
-    public VideoBean selectByVideoId(Map vid);
+    public VideoBean selectByVideoId(String vid);
     public List<VideoBean> selectRecently();
     public List<VideoBean> selectRate();
     public List<VideoBean> selectFav();
