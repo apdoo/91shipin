@@ -6,6 +6,8 @@ CREATE TABLE proxy(
 	updatetime varchar(20)
 );
 
+--insert into user (username,password,type) value('admin','admin123',5);
+
 --用户表     添加用户表id主键自增           //temp 用来存sessionid
 CREATE TABLE user(
   id int NOT NULL AUTO_INCREMENT primary key,
