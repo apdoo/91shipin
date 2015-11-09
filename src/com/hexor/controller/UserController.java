@@ -86,7 +86,7 @@ public class UserController {
         if(result==null){
             ModelAndView modelAndView=new ModelAndView();
             modelAndView.setViewName("messagetip");
-            modelAndView.addObject("msg", EncodingTool.encodeStr("用户名或密码错误", "GBK"));
+            modelAndView.addObject("msg", EncodingTool.encodeStr("用户名或密码错误", "UTF-8"));
             return modelAndView;
         }
         //登录成功

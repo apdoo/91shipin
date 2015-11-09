@@ -57,13 +57,12 @@ public class VideoController {
             return new ModelAndView("messagetip", ModelMapUtil.getMsg("抱歉，获取视频页面出错！"));
         }
         System.out.println("want video:"+videoId);
-        if(!videoId.endsWith(".mp4")){
+//        if(!videoId.endsWith(".mp4")){
             //解析视频id错误的时候
-            return new ModelAndView("messagetip", ModelMapUtil.getMsg("抱歉，获取视频页面出错！"));
-        }
+//            return new ModelAndView("messagetip", ModelMapUtil.getMsg("抱歉，获取视频页面出错！"));
+//        }
         VideoBean video=videoService.selectByVideoId(videoId);
         if(video==null){
-            System.out.println("bbbbbbbb");
             return new ModelAndView("messagetip", ModelMapUtil.getMsg("抱歉，获取视频页面出错！"));
         }
         //84812.mp4  84897.mp4

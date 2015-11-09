@@ -16,7 +16,7 @@ public class ModelMapUtil {
 
     public static Map getMsg(String msg){
            Map map=new HashMap();
-           msg= EncodingTool.encodeStr(msg,"GBK");
+           msg= EncodingTool.encodeStr(msg,"UTF-8");
            map.put("msg",msg) ;
            return map;
     }
